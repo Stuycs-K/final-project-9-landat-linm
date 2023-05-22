@@ -6,6 +6,22 @@ public class Cards{
   private final int[][] GOOSE = new int[][]{{-1, 1},{-1, 0},{1, 0},{1, -1}};
   private final int[][] TIGER = new int[][]{{0, 2},{0, -1}};
   
+  /*
+  https://www.catholicmom.com/hs-fs/hubfs/Imported_Blog_Media/Onitama-3.jpg?width=320&height=191&name=Onitama-3.jpg
+  private final int[][] CRAB = new int[][]{{0, 1},{-2, 0},{2, 0}};
+  private final int[][] MONKEY = new int[][]{{-1, 1},{1,-1},{-1,-1},{1,-1}};
+  private final int[][] CRANE = new int[][]{{0,1},{-1,-1},{1,-1}};
+  private final int[][] ELEPHANT = new int[][]{{-1,1},{1,1},{-1,0},{1,0}};
+  private final int[][] MANTIS = new int[][]{{-1,1},{1,1},{0,-1}};
+  private final int[][] BOAR = new int[][]{{0,1}{-1,0},{1,0}};
+  private final int[][] FROG = new int[][]{{-1,1},{-2,0},{1,-1}};
+  private final int[][] HORSE = new int[][]{{0,1},{-1,0},{0,-1}};
+  private final int[][] EEL = new int[][]{{-1,1},{1,0},{-1,-1}};
+  private final int[][] ROOSTER = new int[][]{{1, 1},{-1,0},{1,0},{-1,-1}};
+  private final int[][] OX = new int[][]{{0,1},{1,0},0,-1}};
+  private final int[][] COBRA = new int[][]{{1,1},{-1,0},{1,-1}};
+  */
+  
   public Cards(String name){
     if (name.equals("DRAGON")){
       validMoves = DRAGON;
