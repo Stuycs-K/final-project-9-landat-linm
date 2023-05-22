@@ -1,4 +1,8 @@
 public class Cards{
-  private static int[][] validMoves;
-  private static String Grid;
+  private int[][] validMoves;
+  private String Grid;
+  private final int[][] DRAGON = new int[][]{{-2, 1},{2, 1},{-1, -1},{1, -1}};
+  private final int[][] RABBIT = new int[][]{{1, 1},{2, 0},{-1, -1}};
+  private final int[][] GOOSE = new int[][]{{-1, 1},{-1, 0},{1, 0},{1, -1}};
+  private final int[][] TIGER = new int[][]{{0, 2},{0, -1}};
 }
