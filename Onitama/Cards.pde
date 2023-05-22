@@ -24,4 +24,8 @@ public class Cards{
       Grid = "N/A";
     }
   }
+  
+  public int[][] getValidMoves(){
+    return validMoves;
+  }
 }
