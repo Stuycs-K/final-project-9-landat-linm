@@ -28,4 +28,10 @@ public class Cards{
   public int[][] getValidMoves(){
     return validMoves;
   }
+  
+  public String toString(){
+    for (int i = 0; i < validMoves.length; i++){
+      System.out.println(validMoves[0]+", "+validMoves[1]);
+    }
+  }
 }
