@@ -30,8 +30,24 @@ public class Cards{
   }
   
   public String toString(){
+    String ans = "{";
     for (int i = 0; i < validMoves.length; i++){
-      System.out.println(validMoves[0]+", "+validMoves[1]);
+      ans+="{"+validMoves[i][0]+", "+validMoves[i][1]+"}";
+      if (i < validMoves.length-1){
+        ans+=", ";
+      }
     }
+    return ans+"}";
+  }
+  
+  public boolean isValid(int startRow, int startCol, int endRow, int endCol){
+    int deltaX = endRow-startRow;
+    int deltaY = endCol-startCol;
+    for (int i = 0; i < validMoves.length; i++){
+      if (validMoves[i][0]==deltaX && validMoves[i][1]==deltaY){
+        return true;
+      }
+    }
+    return false;
   }
 }
