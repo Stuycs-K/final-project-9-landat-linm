@@ -2,6 +2,16 @@ public class Game{
   private Piece[][] board;
   private Cards[] deck;
   
+  public Game(){
+    Piece[][] board = {{new Piece(2, "pawn"), new Piece(2, "pawn"), new Piece(2, "king"), new Piece(2, "pawn"), new Piece(2, "pawn")},
+    {null, null, null, null, null},
+    {null, null, null, null, null},
+    {null, null, null, null, null},
+    {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), new Piece(1, "pawn"), new Piece(1, "pawn")}
+    };
+    Cards[] deck = {new Cards("DRAGON"), new Cards("DRAGON"), new Cards("DRAGON"), new Cards("DRAGON")}; 
+  }
+  
   public Cards[] getDeck(){
     return deck;
   }
