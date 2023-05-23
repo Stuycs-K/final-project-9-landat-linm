@@ -11,12 +11,12 @@ info
 info
 
 
-## GROUP MEMBER 2
+## Mikayla Lin
 
-### date x
+### May 22
 
-info
+Finished writing the Cards class with a constructor, getValidMoves(), toString(), and isValid().
 
-### date y
+### May 23
 
-info
+I started working on the Game class. I wrote a canMove method to detemine if a certain movement was allowed. I also wrote the move method to actually move pieces within the array representing our board.
