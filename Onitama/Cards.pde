@@ -66,4 +66,26 @@ public class Cards{
     }
     return false;
   }
+  
+  void display(int x, int y){
+    stroke(0);
+    fill(255);
+    int SQUARE_SIZE=30;
+    for (int i = 0; i<5; i++){
+      for (int j = 0; j<5; j++){
+        if (i==2 && j==2){
+          fill(100);
+        } else{
+          fill(255);
+        }
+        rect(x+i*SQUARE_SIZE, y+j*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+      }
+    }
+    for (int i = 0; i < validMoves.length; i++){
+      int row = 2+validMoves[i][0];
+      int col = 2-validMoves[i][1];
+      fill(200);
+      rect(x+row*SQUARE_SIZE, y+col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+    }
+  }
 }
