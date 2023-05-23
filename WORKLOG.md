@@ -1,14 +1,14 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Theodore Landa
 
-### date x
+### May 22
 
-info
+Updated UML and plan
 
-### date y
+### May 23
 
-info
+Added Pieces class
 
 
 ## Mikayla Lin
