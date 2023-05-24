@@ -35,4 +35,19 @@ public class Game{
     }
     return false;
   }
+  
+  public String toString(){
+    String str = "";
+    for (int i = 0; i < 5; i++){
+      for (int j = 0; j < 5; j++){
+        if (board[i][j].equals(null)){
+          str += "   ";
+        }
+        else{
+          str += board[i][j].getPieceType() + board[i][j].getPlayer() + " ";
+        }
+      }
+    }
+    return str;
+  }
 }
