@@ -8,7 +8,7 @@ Updated UML and plan
 
 ### May 23
 
-Added Pieces class
+I added the pieces class, and created the game class's toString and the highlight function to process the card inputs.
 
 
 ## Mikayla Lin
