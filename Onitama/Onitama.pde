@@ -13,14 +13,17 @@ void setup(){
   fill(#282d34);
   rect(100, 225, 400, 400); //game.board.display(100, 225);
   game = new Game();
+  drawCards();
+}
+void draw(){
+  
+}
+void drawCards(){
   game.deck[0].display(100, 662, 1);
   game.deck[1].display(310, 662, 1);
   game.deck[2].display(100, 38, 2);
   game.deck[3].display(310, 38, 2);
   game.deck[3].display(530, 350, 0); //3 should change to 4 at some point
-}
-void draw(){
-  
 }
 
 void mouseClicked(){
