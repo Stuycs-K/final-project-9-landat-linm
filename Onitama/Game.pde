@@ -24,7 +24,7 @@ public class Game{
     Piece temp = board[endRow][endCol];
     board[endRow][endCol] =  board[startRow][startCol];
     board[startRow][startCol] = null;
-    if (temp.getPieceType().equals("Master")){
+    if (temp.getPieceType().equals("king")){
       return true;
     }
     if (currentPlayer==1 && endRow==0 && endCol==2){
