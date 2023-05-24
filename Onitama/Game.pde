@@ -9,7 +9,7 @@ public class Game{
     {null, null, null, null, null},
     {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), new Piece(1, "pawn"), new Piece(1, "pawn")}
     };
-    Cards[] deck = {new Cards("DRAGON"), new Cards("RABBIT"), new Cards("GOOSE"), new Cards("TIGER")};
+    deck = new Cards[]{new Cards("DRAGON"), new Cards("RABBIT"), new Cards("GOOSE"), new Cards("TIGER")};
   }
 
   public Cards[] getDeck(){
