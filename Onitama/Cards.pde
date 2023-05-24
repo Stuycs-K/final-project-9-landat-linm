@@ -5,13 +5,13 @@ public class Cards{
   private final int[][] RABBIT = new int[][]{{1, 1},{2, 0},{-1, -1}};
   private final int[][] GOOSE = new int[][]{{-1, 1},{-1, 0},{1, 0},{1, -1}};
   private final int[][] TIGER = new int[][]{{0, 2},{0, -1}};
+  private final int[][] ELEPHANT = new int[][]{{-1,1},{1,1},{-1,0},{1,0}};
   
   /*
   https://www.catholicmom.com/hs-fs/hubfs/Imported_Blog_Media/Onitama-3.jpg?width=320&height=191&name=Onitama-3.jpg
   private final int[][] CRAB = new int[][]{{0, 1},{-2, 0},{2, 0}};
   private final int[][] MONKEY = new int[][]{{-1, 1},{1,-1},{-1,-1},{1,-1}};
   private final int[][] CRANE = new int[][]{{0,1},{-1,-1},{1,-1}};
-  private final int[][] ELEPHANT = new int[][]{{-1,1},{1,1},{-1,0},{1,0}};
   private final int[][] MANTIS = new int[][]{{-1,1},{1,1},{0,-1}};
   private final int[][] BOAR = new int[][]{{0,1}{-1,0},{1,0}};
   private final int[][] FROG = new int[][]{{-1,1},{-2,0},{1,-1}};
@@ -25,16 +25,19 @@ public class Cards{
   public Cards(String name){
     if (name.equals("DRAGON")){
       validMoves = DRAGON;
-      Grid = "Dragon";
+      Grid = "DRAGON";
     } else if (name.equals("RABBIT")){
       validMoves = RABBIT;
-      Grid = "Rabbit";
+      Grid = "RABBIT";
     } else if (name.equals("GOOSE")){
       validMoves = GOOSE;
-      Grid = "Goose";
+      Grid = "GOOSE";
     } else if (name.equals("TIGER")){
       validMoves = TIGER;
-      Grid = "Tiger";
+      Grid = "TIGER";
+    } else if (name.equals("ELEPHANT")){
+      validMoves = ELEPHANT;
+      Grid = "ELEPHANT";
     } else{
       validMoves = null;
       Grid = "N/A";
@@ -67,25 +70,38 @@ public class Cards{
     return false;
   }
   
-  void display(int x, int y){
-    stroke(0);
-    fill(255);
+  void display(int x, int y, int player){
+    stroke(#757575);
     int SQUARE_SIZE=30;
     for (int i = 0; i<5; i++){
       for (int j = 0; j<5; j++){
         if (i==2 && j==2){
-          fill(100);
+          fill(#d7d7d7);
         } else{
-          fill(255);
+          fill(#282c34);
         }
         rect(x+i*SQUARE_SIZE, y+j*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
       }
     }
+    if (player == 1){
+      fill(#d46579);
+    } else if (player == 2){
+      fill(#65b1d4);
+    } else {
+      fill(#d4c065);
+    }
     for (int i = 0; i < validMoves.length; i++){
       int row = 2+validMoves[i][0];
       int col = 2-validMoves[i][1];
-      fill(200);
       rect(x+row*SQUARE_SIZE, y+col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+    }
+    rect(x+150, y, 40, 150);
+    for (int i = 0; i < Grid.length(); i++){
+      textAlign(CENTER);
+      double head = (8-Grid.length())/2;
+      fill(#ffffff);
+      textSize(16);
+      text(Grid.charAt(i), x+170, (int)(y+30+15*(i+head)));
     }
   }
 }
