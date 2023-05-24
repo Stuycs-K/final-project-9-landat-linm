@@ -51,23 +51,24 @@ public class Game{
     return str;
   }
   
-  public ArrayList<int[2]> highlight(int pieceRow, int pieceCol, int currentPlayer, Cards card){
-    ArrayList<int[2]> possibleMoves = new ArrayList<int[2]>();
+  public ArrayList<int[]> highlight(int pieceRow, int pieceCol, int currentPlayer, Cards card){
+    ArrayList<int[]> possibleMoves = new ArrayList<int[]>();
     int[][] vectors = card.getValidMoves();
     /*
     if (currentPlayer == 2){
       for (int i = 0; i < vectors.length; i++){
-        for (int j = 0; j < v2; j++){
+        for (int j = 0; j < 2; j++){
           vectors[i][j] = -1 * vectors[i][j];
         }
       }
     }
     */
     for (int i = 0; i < vectors.length; i++){
-      int[] rowCol;
+      int[] rowCol = new int[2];
       rowCol[0] = pieceRow - vectors[i][1];
       rowCol[1] = pieceCol + vectors[i][0];
       possibleMoves.add(rowCol);
-    }mk
+    }
+    return possibleMoves;
   }
 }
