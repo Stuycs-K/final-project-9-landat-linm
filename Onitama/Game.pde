@@ -54,6 +54,7 @@ public class Game{
   public ArrayList<int[2]> highlight(int pieceRow, int pieceCol, int currentPlayer, Cards card){
     ArrayList<int[2]> possibleMoves = new ArrayList<int[2]>();
     int[][] vectors = card.getValidMoves();
+    /*
     if (currentPlayer == 2){
       for (int i = 0; i < vectors.length; i++){
         for (int j = 0; j < v2; j++){
@@ -61,11 +62,12 @@ public class Game{
         }
       }
     }
+    */
     for (int i = 0; i < vectors.length; i++){
       int[] rowCol;
       rowCol[0] = pieceRow - vectors[i][1];
       rowCol[1] = pieceCol + vectors[i][0];
       possibleMoves.add(rowCol);
-    }
+    }mk
   }
 }
