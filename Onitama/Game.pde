@@ -1,15 +1,25 @@
 public class Game{
   private Piece[][] board;
   private Cards[] deck;
-  
+
+  public Game(){
+    Piece[][] board = {{new Piece(2, "pawn"), new Piece(2, "pawn"), new Piece(2, "king"), new Piece(2, "pawn"), new Piece(2, "pawn")},
+    {null, null, null, null, null},
+    {null, null, null, null, null},
+    {null, null, null, null, null},
+    {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), new Piece(1, "pawn"), new Piece(1, "pawn")}
+    };
+    Cards[] deck = {new Cards("DRAGON"), new Cards("RABBIT"), new Cards("GOOSE"), new Cards("TIGER")};
+  }
+
   public Cards[] getDeck(){
     return deck;
   }
-  
-  private boolean canMove(int cardNum, int startRow, int startCol, int endRow, int endCol, int currentPlayer){ 
+
+  private boolean canMove(int cardNum, int startRow, int startCol, int endRow, int endCol, int currentPlayer){
     return deck[cardNum].isValid(startRow, startCol, endRow, endCol) && board[endRow][endCol].getPlayer()!=currentPlayer;
   }
-  
+
   private boolean move(int startRow, int startCol, int endRow, int endCol, int currentPlayer){
     Piece temp = board[endRow][endCol];
     board[endRow][endCol] =  board[startRow][startCol];
@@ -24,5 +34,41 @@ public class Game{
       return true;
     }
     return false;
+  }
+  
+  public String toString(){
+    String str = "";
+    for (int i = 0; i < 5; i++){
+      for (int j = 0; j < 5; j++){
+        if (board[i][j].equals(null)){
+          str += "0  ";
+        }
+        else{
+          str += board[i][j].getPieceType() + board[i][j].getPlayer() + " ";
+        }
+      }
+    }
+    return str;
+  }
+  
+  public ArrayList<int[]> highlight(int pieceRow, int pieceCol, int currentPlayer, Cards card){
+    ArrayList<int[]> possibleMoves = new ArrayList<int[]>();
+    int[][] vectors = card.getValidMoves();
+    /*
+    if (currentPlayer == 2){
+      for (int i = 0; i < vectors.length; i++){
+        for (int j = 0; j < 2; j++){
+          vectors[i][j] = -1 * vectors[i][j];
+        }
+      }
+    }
+    */
+    for (int i = 0; i < vectors.length; i++){
+      int[] rowCol = new int[2];
+      rowCol[0] = pieceRow - vectors[i][1];
+      rowCol[1] = pieceCol + vectors[i][0];
+      possibleMoves.add(rowCol);
+    }
+    return possibleMoves;
   }
 }
