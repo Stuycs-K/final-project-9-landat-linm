@@ -70,31 +70,36 @@ public class Cards{
     return false;
   }
   
-  void display(int x, int y){
-    stroke(0);
-    fill(255);
+  void display(int x, int y, int player){
+    stroke(#757575);
     int SQUARE_SIZE=30;
     for (int i = 0; i<5; i++){
       for (int j = 0; j<5; j++){
         if (i==2 && j==2){
-          fill(100);
+          fill(#d7d7d7);
         } else{
-          fill(255);
+          fill(#282c34);
         }
         rect(x+i*SQUARE_SIZE, y+j*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
       }
     }
+    if (player == 1){
+      fill(#d46579);
+    } else if (player == 2){
+      fill(#65b1d4);
+    } else {
+      fill(#d4c065);
+    }
     for (int i = 0; i < validMoves.length; i++){
       int row = 2+validMoves[i][0];
       int col = 2-validMoves[i][1];
-      fill(200);
       rect(x+row*SQUARE_SIZE, y+col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
     rect(x+150, y, 40, 150);
     for (int i = 0; i < Grid.length(); i++){
       textAlign(CENTER);
       double head = (8-Grid.length())/2;
-      fill(0);
+      fill(#ffffff);
       textSize(16);
       text(Grid.charAt(i), x+170, (int)(y+30+15*(i+head)));
     }
