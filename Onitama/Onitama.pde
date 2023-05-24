@@ -9,13 +9,15 @@ Game game;
 
 void setup(){
   size(750, 850);
-  //rect(100, 225, 400, 400);
+  background(#121115);
+  fill(#282d34);
+  rect(100, 225, 400, 400); //game.board.display(100, 225);
   game = new Game();
-  game.deck[2].display(100, 38);
-  game.deck[3].display(310, 38);
-  //game.deck[4].display(530, 350);
-  game.deck[0].display(100, 662);
-  game.deck[1].display(310, 662);
+  game.deck[0].display(100, 662, 1);
+  game.deck[1].display(310, 662, 1);
+  game.deck[2].display(100, 38, 2);
+  game.deck[3].display(310, 38, 2);
+  game.deck[3].display(530, 350, 0); //3 should change to 4 at some point
 }
 void draw(){
   
