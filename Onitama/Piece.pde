@@ -16,29 +16,34 @@ public class Piece{
   }
   
   void display(int x, int y){
-    if(player == 1){
-      if(pieceType.equals("king")){
-        PImage redKing = loadImage("redKing.png");
-        redKing.resize(50, 0);
-        image(redKing, x, y);
-      }
-      else{
-        PImage redPawn = loadImage("redPawn.png");
-        redPawn.resize(50, 0);
-        image(redPawn, x, y);
-      }
+    if (player==1){
+      fill(#f44336);
+      stroke(#f44336);
+    } else{
+      fill(#2196f3);
+      stroke(#2196f3);
     }
-    else{
-      if(pieceType.equals("king")){
-        PImage blueKing = loadImage("blueKing.png");
-        blueKing.resize(50, 0);
-        image(blueKing, x, y);
-      }
-      else{
-        PImage bluePawn = loadImage("bluePawn.png");
-        bluePawn.resize(50, 0);
-        image(bluePawn, x, y);
-      }
+    if (pieceType.equals("pawn")){
+      drawPawn(x, y);
+    } else{
+      drawKing(x, y);
     }
+  }
+
+  
+  void drawPawn(int x, int y){
+    circle(x+40, y+22, 25);
+    rect(x+28, y+33, 24, 8, 2);
+    quad(x+32, y+41, x+48, y+41, x+52, y+58, x+28, y+58);
+    rect(x+20, y+62, 40, 7, 2);
+  }
+  
+  void drawKing(int x, int y){
+    rect(x+20, y+62, 40, 7, 2);
+    quad(x+18, y+32, x+62, y+32, x+52, y+58, x+28, y+58);
+    rect(x+18, y+31, 44, 3, 2);
+    rect(x+38, y+16, 4, 16, 2);
+    rect(x+32, y+22, 16, 4, 2);
+    
   }
 }

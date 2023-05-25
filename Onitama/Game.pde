@@ -73,11 +73,13 @@ public class Game{
   }
   
   void display(int x, int y){
-    stroke(#757575);
-    fill(#2e2b37);
+    stroke(#41464e);
+    fill(#282c34);
     int SQUARE_SIZE = 80;
     for (int i = 0; i < 5; i++){
       for (int j = 0; j < 5; j++){
+        stroke(#41464e);
+        fill(#282c34);
         rect(SQUARE_SIZE * j + x, SQUARE_SIZE * i + y, SQUARE_SIZE, SQUARE_SIZE);
         if(this.board[i][j] != null){
           this.board[i][j].display(j * SQUARE_SIZE + x, i * SQUARE_SIZE + y);
