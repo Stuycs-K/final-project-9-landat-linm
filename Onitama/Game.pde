@@ -84,6 +84,11 @@ public class Game{
       for (int j = 0; j < 5; j++){
         stroke(#41464e);
         fill(#282c34);
+        if (i == 0 && j==2){
+          fill(#263848);
+        } else if(i==4 && j==2){
+          fill(#3c2f34);
+        }
         rect(SQUARE_SIZE * j + x, SQUARE_SIZE * i + y, SQUARE_SIZE, SQUARE_SIZE, 3);
         if(this.board[i][j] != null){
           this.board[i][j].display(j * SQUARE_SIZE + x, i * SQUARE_SIZE + y);
