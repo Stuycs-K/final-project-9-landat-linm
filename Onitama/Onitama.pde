@@ -11,8 +11,9 @@ void setup(){
   size(750, 850);
   background(#121115);
   fill(#282d34);
-  rect(100, 225, 400, 400); //game.board.display(100, 225);
+  rect(100, 225, 400, 400);
   game = new Game();
+  game.display(100, 225);
   drawCards();
 }
 void draw(){
