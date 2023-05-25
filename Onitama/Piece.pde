@@ -28,8 +28,6 @@ public class Piece{
     } else{
       drawKing(x, y);
     }
-    fill(#292c34);
-    stroke(#42464d);
   }
 
   
