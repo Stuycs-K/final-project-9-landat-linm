@@ -1,8 +1,6 @@
-static int CHOOSECARD = 0;
-static int CHOOSEPIECE = 1;
-static int CHOOSEDEST = 2;
-static int MODE = CHOOSECARD;
 int startRow, startCol, endRow, endCol;
+int selectedCard;
+int[] currentPiece;
 int currentPlayer;
 ArrayList<int[]> highlights;
 Game game;
@@ -26,11 +24,18 @@ void drawCards(){
 }
 
 void mouseClicked(){
-  if (MODE==CHOOSECARD){
-    // call whichCard() to determine which card
-  } else if (MODE==CHOOSEPIECE){
-    //
-  } else if (MODE==CHOOSEDEST){
-    //
-  }
+  if(currentPlayer == 1){
+    if(mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812){
+      selectedCard = 0;
+    }
+    if(mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812){
+      selectedCard = 1;
+    }
+    if(mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625){
+      int row = whichTile(mouseX, mouseY)[0];
+      int col = whichTile(mouseX, mouseY)[1];
+      if(game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer){
+        currentPiece[0] = row;
+        currentPiece[1] = col;
+      }
 }
