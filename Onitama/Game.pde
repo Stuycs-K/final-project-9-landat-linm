@@ -3,7 +3,7 @@ public class Game{
   private Cards[] deck;
 
   public Game(){
-    Piece[][] board ={{new Piece(2, "pawn"), new Piece(2, "pawn"), new Piece(2, "king"), new Piece(2, "pawn"), new Piece(2, "pawn")},
+    board = new Piece[][]{{new Piece(2, "pawn"), new Piece(2, "pawn"), new Piece(2, "king"), new Piece(2, "pawn"), new Piece(2, "pawn")},
     {null, null, null, null, null},
     {null, null, null, null, null},
     {null, null, null, null, null},
