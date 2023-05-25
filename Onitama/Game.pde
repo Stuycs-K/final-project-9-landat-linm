@@ -3,7 +3,7 @@ public class Game{
   private Cards[] deck;
 
   public Game(){
-    Piece[][] board = {{new Piece(2, "pawn"), new Piece(2, "pawn"), new Piece(2, "king"), new Piece(2, "pawn"), new Piece(2, "pawn")},
+    Piece[][] board ={{new Piece(2, "pawn"), new Piece(2, "pawn"), new Piece(2, "king"), new Piece(2, "pawn"), new Piece(2, "pawn")},
     {null, null, null, null, null},
     {null, null, null, null, null},
     {null, null, null, null, null},
@@ -70,5 +70,19 @@ public class Game{
       possibleMoves.add(rowCol);
     }
     return possibleMoves;
+  }
+  
+  void display(int x, int y){
+    stroke(#757575);
+    fill(#2e2b37);
+    int SQUARE_SIZE = 80;
+    for (int i = 0; i < 5; i++){
+      for (int j = 0; j < 5; j++){
+        rect(SQUARE_SIZE * j + x, SQUARE_SIZE * i + y, SQUARE_SIZE, SQUARE_SIZE);
+        if(this.board[i][j] != null){
+          this.board[i][j].display(j * SQUARE_SIZE + x, i * SQUARE_SIZE + y);
+        }
+      }
+    }
   }
 }

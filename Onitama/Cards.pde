@@ -78,7 +78,7 @@ public class Cards{
         if (i==2 && j==2){
           fill(#d7d7d7);
         } else{
-          fill(#282c34);
+          fill(#2b2e37);
         }
         rect(x+i*SQUARE_SIZE, y+j*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
       }
