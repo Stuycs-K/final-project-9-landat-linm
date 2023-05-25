@@ -41,5 +41,11 @@ public class Piece{
   }
   
   void drawKing(int x, int y){
+    rect(x+20, y+62, 40, 7, 2);
+    quad(x+18, y+32, x+62, y+32, x+52, y+58, x+28, y+58);
+    rect(x+18, y+31, 44, 3, 2);
+    rect(x+38, y+16, 4, 16, 2);
+    rect(x+32, y+22, 16, 4, 2);
+    
   }
 }
