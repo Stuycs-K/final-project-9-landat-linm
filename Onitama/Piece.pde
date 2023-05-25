@@ -15,25 +15,29 @@ public class Piece{
     pieceType = newPieceType;
   }
   
-  public display(int x, int y){
-    if(player = 1){
-      if(pieceType.equals("king"){
+  void display(int x, int y){
+    if(player == 1){
+      if(pieceType.equals("king")){
         PImage redKing = loadImage("redKing.png");
-        image(x, y, redKing);
+        redKing.resize(50, 0);
+        image(redKing, x, y);
       }
       else{
         PImage redPawn = loadImage("redPawn.png");
-        image(x, y, redPawn);
+        redPawn.resize(50, 0);
+        image(redPawn, x, y);
       }
     }
     else{
-      if(pieceType.equals("king"){
+      if(pieceType.equals("king")){
         PImage blueKing = loadImage("blueKing.png");
-        image(x, y, blueKing);
+        blueKing.resize(50, 0);
+        image(blueKing, x, y);
       }
       else{
         PImage bluePawn = loadImage("bluePawn.png");
-        image(x, y, bluePawn);
+        bluePawn.resize(50, 0);
+        image(bluePawn, x, y);
       }
     }
   }
