@@ -80,7 +80,7 @@ public class Game{
       for (int j = 0; j < 5; j++){
         stroke(#41464e);
         fill(#282c34);
-        rect(SQUARE_SIZE * j + x, SQUARE_SIZE * i + y, SQUARE_SIZE, SQUARE_SIZE);
+        rect(SQUARE_SIZE * j + x, SQUARE_SIZE * i + y, SQUARE_SIZE, SQUARE_SIZE, 3);
         if(this.board[i][j] != null){
           this.board[i][j].display(j * SQUARE_SIZE + x, i * SQUARE_SIZE + y);
         }
