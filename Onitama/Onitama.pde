@@ -11,12 +11,13 @@ void setup(){
   game = new Game();
   game.display(100, 225);
   drawCards();
+  currentPlayer = 1;
 }
 void draw(){
   background(#121115);
   drawCards();
   game.display(100,225);
-  void debugStrings();
+  debugStrings();
 }
 
 void debugStrings(){
