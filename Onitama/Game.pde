@@ -17,14 +17,20 @@ public class Game{
   }
 
   private boolean canMove(int cardNum, int startRow, int startCol, int endRow, int endCol, int currentPlayer){
-    return deck[cardNum].isValid(startRow, startCol, endRow, endCol) && board[endRow][endCol].getPlayer()!=currentPlayer;
+    if (deck[cardNum].isValid(startRow, startCol, endRow, endCol)){
+      if (board[endRow][endCol] != null){
+        return board[endRow][endCol].getPlayer()!=currentPlayer;
+      }
+      return true;
+    }
+    return false;
   }
 
   private boolean move(int startRow, int startCol, int endRow, int endCol, int currentPlayer){
     Piece temp = board[endRow][endCol];
     board[endRow][endCol] =  board[startRow][startCol];
     board[startRow][startCol] = null;
-    if (temp.getPieceType().equals("king")){
+    if (temp != null && temp.getPieceType().equals("king")){
       return true;
     }
     if (currentPlayer==1 && endRow==0 && endCol==2){
@@ -73,7 +79,7 @@ public class Game{
   }
   
   public int[] whichTile(int mousex, int mousey){
-    return new int[]{(mousex - 100) / 80, (mousey - 225) / 80};
+    return new int[]{(mousey - 225) / 80, (mousex - 100) / 80};
   }
   
   void display(int x, int y){
@@ -84,6 +90,11 @@ public class Game{
       for (int j = 0; j < 5; j++){
         stroke(#41464e);
         fill(#282c34);
+        if (i == 0 && j==2){
+          fill(#263848);
+        } else if(i==4 && j==2){
+          fill(#3c2f34);
+        }
         rect(SQUARE_SIZE * j + x, SQUARE_SIZE * i + y, SQUARE_SIZE, SQUARE_SIZE, 3);
         if(this.board[i][j] != null){
           this.board[i][j].display(j * SQUARE_SIZE + x, i * SQUARE_SIZE + y);
