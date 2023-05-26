@@ -1,8 +1,8 @@
-int selectedCard;
-int[] currentPiece;
-int currentPlayer;
+int selectedCard = -1;
+int[] currentPiece = {-1, -1};
+int currentPlayer = -1;
 ArrayList<int[]> highlights;
-boolean gameOver;
+boolean gameOver = false;
 Game game;
 
 void setup(){
@@ -41,19 +41,19 @@ void mouseClicked(){
     }
   }
     if(mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625){
-      int row = whichTile(mouseX, mouseY)[0];
-      int col = whichTile(mouseX, mouseY)[1];
+      int row = game.whichTile(mouseX, mouseY)[0];
+      int col = game.whichTile(mouseX, mouseY)[1];
       if(game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer){
         currentPiece[0] = row;
         currentPiece[1] = col;
-      } else if(selectedCard != null) && currentPiece[0] != null){
+      } else if(selectedCard != -1 && currentPiece[0] != -1){
         if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)){
           if(game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)){
             gameOver = true;
           } else{
-            currentPiece[0] = null;
-            currentPiece[1] = null;
-            selectedCard = null;
+            currentPiece[0] = -1;
+            currentPiece[1] = -1;
+            selectedCard = -1;
             if(currentPlayer == 1){
               currentPlayer++;
             } else{

@@ -72,6 +72,10 @@ public class Game{
     return possibleMoves;
   }
   
+  public int[] whichTile(int mousex, int mousey){
+    return new int[]{(mousex - 100) / 80, (mousey - 225) / 80};
+  }
+  
   void display(int x, int y){
     stroke(#41464e);
     fill(#282c34);
