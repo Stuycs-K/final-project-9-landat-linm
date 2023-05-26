@@ -17,7 +17,13 @@ public class Game{
   }
 
   private boolean canMove(int cardNum, int startRow, int startCol, int endRow, int endCol, int currentPlayer){
-    return deck[cardNum].isValid(startRow, startCol, endRow, endCol) && board[endRow][endCol].getPlayer()!=currentPlayer;
+    if (deck[cardNum].isValid(startRow, startCol, endRow, endCol){
+      if (board[endRow][endCol] != null){
+        return board[endRow][endCol].getPlayer()!=currentPlayer;
+      }
+      return true;
+    }
+    return false;
   }
 
   private boolean move(int startRow, int startCol, int endRow, int endCol, int currentPlayer){
