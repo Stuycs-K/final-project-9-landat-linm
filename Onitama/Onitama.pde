@@ -29,6 +29,18 @@ void highlight(){
       rect(80*highlights.get(i)[1]+100, 80*highlights.get(i)[0]+225, 80, 80);
     }
   }
+  noFill();
+  if (selectedCard == 0){
+    rect(100, 662, 190, 150);
+  } else if (selectedCard == 1){
+    rect(310, 662, 190, 150);
+  } else if (selectedCard == 2){
+    rect(100, 38, 190, 150);
+  } else if (selectedCard == 3){
+    rect(310, 38, 190, 150);
+  } else if (selectedCard == 4){
+    rect(530, 350, 190, 150);
+  } 
 }
 
 void debugStrings(){
