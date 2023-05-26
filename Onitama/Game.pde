@@ -73,8 +73,10 @@ public class Game{
       int[] rowCol = new int[2];
       rowCol[0] = pieceRow - vectors[i][1];
       rowCol[1] = pieceCol + vectors[i][0];
-      if (rowCol[0]>-1 && rowCol[0]<5 && rowCol[1]>-1 && rowCol[0]<5){
-        possibleMoves.add(rowCol);
+      if (rowCol[0]>-1 && rowCol[0]<5 && rowCol[1]>-1 && rowCol[1]<5){
+        if (board[rowCol[0]][rowCol[1]] == null || board[rowCol[0]][rowCol[1]].getPlayer()!=currentPlayer){
+          possibleMoves.add(rowCol);
+        }
       }
     }
     return possibleMoves;
