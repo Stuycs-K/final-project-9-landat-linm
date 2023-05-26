@@ -7,9 +7,7 @@ Game game;
 
 void setup(){
   size(750, 850);
-  background(#121115);
   game = new Game();
-  game.display(100, 225);
   drawCards();
   currentPlayer = 1;
 }
@@ -17,7 +15,7 @@ void draw(){
   background(#121115);
   drawCards();
   game.display(100,225);
-  debugStrings();
+  //debugStrings();
   highlight();
 }
 
