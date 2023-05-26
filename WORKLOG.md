@@ -16,7 +16,7 @@ I added display methods for Game and Pieces. I found images on the web for Piece
 
 ### May 25
 
-I added the mouseclick method, which allows the players to manipulate the board, select cards, pieces, and destinations, and move, take turns, and win. I also made minor edits to the other files, such as making bounds for the board in the isvalid function.
+I added the MouseClicked() method, which allows the players to manipulate the board, select cards, pieces, and destinations, and move, take turns, and win. I also made minor edits to the other files, such as making bounds for the board in the isValid() function. Then I made some bugfixes in MouseClicked(), and added whichTile() to the Game class.
 
 
 ## Mikayla Lin
