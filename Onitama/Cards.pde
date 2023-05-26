@@ -63,8 +63,8 @@ public class Cards{
   }
   
   public boolean isValid(int startRow, int startCol, int endRow, int endCol){
-    int deltaY = endRow-startRow;
-    int deltaX = startCol-endCol;
+    int deltaY = startRow-endRow;
+    int deltaX = endCol-startCol;
     for (int i = 0; i < validMoves.length; i++){
       if (validMoves[i][0]==deltaX && validMoves[i][1]==deltaY && endRow < 5 && endCol < 5){
         return true;
