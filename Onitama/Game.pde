@@ -9,7 +9,7 @@ public class Game{
     {null, null, null, null, null},
     {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), new Piece(1, "pawn"), new Piece(1, "pawn")}
     };
-    deck = new Cards[]{new Cards("DRAGON"), new Cards("RABBIT"), new Cards("GOOSE"), new Cards("TIGER")};
+    deck = new Cards[]{new Cards("DRAGON"), new Cards("RABBIT"), new Cards("GOOSE"), new Cards("TIGER"), new Cards("CRAB")};
   }
 
   public Cards[] getDeck(){
@@ -84,6 +84,7 @@ public class Game{
         if(this.board[i][j] != null){
           this.board[i][j].display(j * SQUARE_SIZE + x, i * SQUARE_SIZE + y);
         }
+        
       }
     }
   }

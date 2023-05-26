@@ -1,8 +1,8 @@
-int startRow, startCol, endRow, endCol;
 int selectedCard;
 int[] currentPiece;
 int currentPlayer;
 ArrayList<int[]> highlights;
+boolean gameOver;
 Game game;
 
 void setup(){
@@ -20,7 +20,7 @@ void drawCards(){
   game.deck[1].display(310, 662, 1);
   game.deck[2].display(100, 38, 2);
   game.deck[3].display(310, 38, 2);
-  game.deck[3].display(530, 350, 0); //3 should change to 4 at some point
+  game.deck[4].display(530, 350, 0); //3 should change to 4 at some point
 }
 
 void mouseClicked(){
@@ -31,11 +31,36 @@ void mouseClicked(){
     if(mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812){
       selectedCard = 1;
     }
+  }
+  if(currentPlayer == 2){
+    if(mouseX > 100 && mouseX < 290 && mouseY > 38 && mouseY < 188){
+      selectedCard = 2;
+    }
+    if(mouseX > 310 && mouseX < 500 && mouseY > 38 && mouseY < 188){
+      selectedCard = 3;
+    }
+  }
     if(mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625){
       int row = whichTile(mouseX, mouseY)[0];
       int col = whichTile(mouseX, mouseY)[1];
       if(game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer){
         currentPiece[0] = row;
         currentPiece[1] = col;
+      } else if(selectedCard != null) && currentPiece[0] != null){
+        if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)){
+          if(game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)){
+            gameOver = true;
+          } else{
+            currentPiece[0] = null;
+            currentPiece[1] = null;
+            selectedCard = null;
+            if(currentPlayer == 1){
+              currentPlayer++;
+            } else{
+              currentPlayer--;
+            }
+          }
+        }
       }
+  }
 }
