@@ -17,7 +17,7 @@ public class Game{
   }
 
   private boolean canMove(int cardNum, int startRow, int startCol, int endRow, int endCol, int currentPlayer){
-    if (deck[cardNum].isValid(startRow, startCol, endRow, endCol){
+    if (deck[cardNum].isValid(startRow, startCol, endRow, endCol)){
       if (board[endRow][endCol] != null){
         return board[endRow][endCol].getPlayer()!=currentPlayer;
       }
@@ -30,7 +30,7 @@ public class Game{
     Piece temp = board[endRow][endCol];
     board[endRow][endCol] =  board[startRow][startCol];
     board[startRow][startCol] = null;
-    if (temp.getPieceType().equals("king")){
+    if (temp != null && temp.getPieceType().equals("king")){
       return true;
     }
     if (currentPlayer==1 && endRow==0 && endCol==2){
