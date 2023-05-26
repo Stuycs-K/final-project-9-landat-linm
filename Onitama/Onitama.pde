@@ -21,14 +21,15 @@ void draw(){
 }
 
 void debugStrings(){
-  text("selectedCard: " + selectedCard, 30, 20);
-  text("selectedPiece: " + currentPiece[0] + ", "+currentPiece[1], 30, 40);
+  textAlign(LEFT);
+  text("selectedCard: " + selectedCard, 20, 20);
+  text("selectedPiece: " + currentPiece[0] + ", "+currentPiece[1], 20, 40);
   if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
     int row = game.whichTile(mouseX, mouseY)[0];
     int col = game.whichTile(mouseX, mouseY)[1];
-    text("Mouse: " + row + ", " + col, 30, 60);
+    text("Mouse: " + row + ", " + col, 20, 60);
     if (game.board[row][col] != null){
-      text("Player: " + game.board[row][col].getPlayer(), 30, 80);
+      text("Player: " + game.board[row][col].getPlayer(), 20, 80);
     }
   }
 }
