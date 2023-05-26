@@ -1,6 +1,8 @@
 static int START = 0;
-static int GAME = 1;
-static int END = 2;
+static int TWOPLAYER = 1;
+static int ONEPLAYER = 2;
+static int TUTORIAL = -1;
+static int END = 3;
 static int MODE = START;
 int selectedCard = -1;
 int[] currentPiece = {-1, -1};
@@ -21,7 +23,7 @@ void setup() {
 }
 void draw() {
   background(#121115);
-  if (MODE == GAME) {
+  if (MODE == TWOPLAYER) {
     drawCards();
     game.display(100, 225);
     debugStrings();
