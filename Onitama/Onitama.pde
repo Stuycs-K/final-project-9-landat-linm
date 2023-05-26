@@ -13,8 +13,25 @@ void setup(){
   drawCards();
 }
 void draw(){
-  
+  background(#121115);
+  drawCards();
+  game.display(100,225);
+  void debugStrings();
 }
+
+void debugStrings(){
+  text("selectedCard: " + selectedCard, 30, 20);
+  text("selectedPiece: " + currentPiece[0] + ", "+currentPiece[1], 30, 40);
+  if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
+    int row = game.whichTile(mouseX, mouseY)[0];
+    int col = game.whichTile(mouseX, mouseY)[1];
+    text("Mouse: " + row + ", " + col, 30, 60);
+    if (game.board[row][col] != null){
+      text("Player: " + game.board[row][col].getPlayer(), 30, 80);
+    }
+  }
+}
+
 void drawCards(){
   game.deck[0].display(100, 662, 1);
   game.deck[1].display(310, 662, 1);
