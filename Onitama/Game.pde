@@ -73,7 +73,7 @@ public class Game{
   }
   
   public int[] whichTile(int mousex, int mousey){
-    return new int[]{(mousex - 100) / 80, (mousey - 225) / 80};
+    return new int[]{(mousey - 225) / 80, (mousex - 100) / 80};
   }
   
   void display(int x, int y){
