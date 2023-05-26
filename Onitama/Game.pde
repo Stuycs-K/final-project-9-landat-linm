@@ -1,7 +1,7 @@
 public class Game{
   private Piece[][] board;
   private Cards[] deck;
-
+  private String[] cardPool = {"DRAGON", "RABBIT", "GOOSE", "TIGER", "ELEPHANT", "CRAB", "MONKEY", "CRANE", "MANTIS", "BOAR", "FROG", "HORSE", "EEL", "ROOSTER", "OX", "COBRA"};
   public Game(){
     board = new Piece[][]{{new Piece(2, "pawn"), new Piece(2, "pawn"), new Piece(2, "king"), new Piece(2, "pawn"), new Piece(2, "pawn")},
     {null, null, null, null, null},
@@ -9,9 +9,8 @@ public class Game{
     {null, null, null, null, null},
     {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), new Piece(1, "pawn"), new Piece(1, "pawn")}
     };
-    deck = new Cards[]{new Cards("DRAGON"), new Cards("RABBIT"), new Cards("GOOSE"), new Cards("TIGER"), new Cards("CRAB")};
+    deck = new Cards[]{new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))])};
   }
-
   public Cards[] getDeck(){
     return deck;
   }

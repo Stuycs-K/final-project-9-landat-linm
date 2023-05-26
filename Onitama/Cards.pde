@@ -10,12 +10,12 @@ public class Cards{
   private final int[][] MONKEY = new int[][]{{-1, 1},{1,-1},{-1,-1},{1,-1}};
   private final int[][] CRANE = new int[][]{{0,1},{-1,-1},{1,-1}};
   private final int[][] MANTIS = new int[][]{{-1,1},{1,1},{0,-1}};
-  private final int[][] BOAR = new int[][]{{0,1}{-1,0},{1,0}};
+  private final int[][] BOAR = new int[][]{{0,1},{-1,0},{1,0}};
   private final int[][] FROG = new int[][]{{-1,1},{-2,0},{1,-1}};
   private final int[][] HORSE = new int[][]{{0,1},{-1,0},{0,-1}};
   private final int[][] EEL = new int[][]{{-1,1},{1,0},{-1,-1}};
   private final int[][] ROOSTER = new int[][]{{1, 1},{-1,0},{1,0},{-1,-1}};
-  private final int[][] OX = new int[][]{{0,1},{1,0},0,-1}};
+  private final int[][] OX = new int[][]{{0,1},{1,0},{0,-1}};
   private final int[][] COBRA = new int[][]{{1,1},{-1,0},{1,-1}};
   
   public Cards(String name){
