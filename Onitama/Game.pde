@@ -73,7 +73,9 @@ public class Game{
       int[] rowCol = new int[2];
       rowCol[0] = pieceRow - vectors[i][1];
       rowCol[1] = pieceCol + vectors[i][0];
-      possibleMoves.add(rowCol);
+      if (rowCol[0]>-1 && rowCol[0]<5 && rowCol[1]>-1 && rowCol[0]<5){
+        possibleMoves.add(rowCol);
+      }
     }
     return possibleMoves;
   }
