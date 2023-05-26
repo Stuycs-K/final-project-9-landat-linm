@@ -26,9 +26,16 @@ void highlight(){
     highlights = game.highlight(currentPiece[0], currentPiece[1], currentPlayer, game.deck[selectedCard]);
     for (int i = 0; i < highlights.size(); i++){
       noFill();
+      stroke(#2f6662);
       rect(80*highlights.get(i)[1]+100, 80*highlights.get(i)[0]+225, 80, 80);
     }
   }
+  if (currentPiece[0] != -1){
+    noFill();
+    stroke(#5e70c4);
+    rect(80*currentPiece[1]+100, 80*currentPiece[0]+225, 80, 80);
+  }
+  stroke(#5e70c4);
   noFill();
   if (selectedCard == 0){
     rect(100, 662, 190, 150);
