@@ -28,3 +28,7 @@ I wrote a canMove method to determine if a certain movement was allowed. I also 
 ### May 24
 
 I fixed a couple of bugs in Game (highlight and the constructor). I also edited my card display function a bit to add 1. The name of the move card 2. Colors! Depending on the status of the card. I started working on the actual UI. I coded drawCards() which displays all the cards in the right position and setup now calls drawCards(), has a background, and for now it has rectangles where displays we haven't finished coding are.
+
+### May 25
+
+Fixed another bug inside the game constructor, and then I made a method to draw a pawn and king so that we could have transparent backgrounds. I also made some minor changes to the colors of certain elements, and some other purely aesthetic changes (like making rectangle corners rounded).
