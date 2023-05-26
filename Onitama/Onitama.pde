@@ -55,6 +55,7 @@ void debugStrings(){
       text("Player: " + game.board[row][col].getPlayer(), 20, 80);
     }
   }
+  text("won? " + gameOver, 20, 100);
 }
 
 void drawCards(){
