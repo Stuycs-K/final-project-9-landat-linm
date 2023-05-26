@@ -18,6 +18,17 @@ void draw(){
   drawCards();
   game.display(100,225);
   debugStrings();
+  highlight();
+}
+
+void highlight(){
+  if (selectedCard != -1 && currentPiece[0] != -1){
+    highlights = game.highlight(currentPiece[0], currentPiece[1], currentPlayer, game.deck[selectedCard]);
+    for (int i = 0; i < highlights.size(); i++){
+      noFill();
+      rect(80*highlights.get(i)[1]+100, 80*highlights.get(i)[0]+225, 80, 80);
+    }
+  }
 }
 
 void debugStrings(){
