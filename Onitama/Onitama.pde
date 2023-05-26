@@ -18,6 +18,29 @@ void draw(){
   drawCards();
   game.display(100,225);
   debugStrings();
+  highlight();
+}
+
+void highlight(){
+  if (selectedCard != -1 && currentPiece[0] != -1){
+    highlights = game.highlight(currentPiece[0], currentPiece[1], currentPlayer, game.deck[selectedCard]);
+    for (int i = 0; i < highlights.size(); i++){
+      noFill();
+      rect(80*highlights.get(i)[1]+100, 80*highlights.get(i)[0]+225, 80, 80);
+    }
+  }
+  noFill();
+  if (selectedCard == 0){
+    rect(100, 662, 190, 150);
+  } else if (selectedCard == 1){
+    rect(310, 662, 190, 150);
+  } else if (selectedCard == 2){
+    rect(100, 38, 190, 150);
+  } else if (selectedCard == 3){
+    rect(310, 38, 190, 150);
+  } else if (selectedCard == 4){
+    rect(530, 350, 190, 150);
+  } 
 }
 
 void debugStrings(){
@@ -32,6 +55,7 @@ void debugStrings(){
       text("Player: " + game.board[row][col].getPlayer(), 20, 80);
     }
   }
+  text("won? " + gameOver, 20, 100);
 }
 
 void drawCards(){
