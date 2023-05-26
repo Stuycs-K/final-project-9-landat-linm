@@ -14,6 +14,10 @@ I added the pieces class, with fields pieceType and player, and the accessor met
 
 I added display methods for Game and Pieces. I found images on the web for Pieces, cropped them, adjusted them, uploaded them, and implemented them in the display functions for the pieces. I used a hexcolor finder to adjust the in game colors to precisely match the images needed. In the display function for game, I created the game grid/board, and iterated through the board array to display the pieces. I was able to make several bugfixes to game, but unfortunately I ran into a nonullpointer error, and spent 40 minutes fighting it in vain. :(
 
+### May 25
+
+I added the mouseclick method, which allows the players to manipulate the board, select cards, pieces, and destinations, and move, take turns, and win. I also made minor edits to the other files, such as making bounds for the board in the isvalid function.
+
 
 ## Mikayla Lin
 
