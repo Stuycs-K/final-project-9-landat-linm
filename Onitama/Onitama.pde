@@ -1,3 +1,7 @@
+static int MODE = START;
+static int START == 0;
+static int GAME == 1;
+static int END == 2;
 int selectedCard = -1;
 int[] currentPiece = {-1, -1};
 int currentPlayer = -1;
@@ -15,8 +19,29 @@ void draw(){
   background(#121115);
   drawCards();
   game.display(100,225);
-  //debugStrings();
+  debugStrings();
   highlight();
+  if (currentPlayer ==1) {
+    fill(#f44336);
+    stroke(#f44336);
+    circle(50, 425, 30);
+    /*
+    arc(50, 425, 30, 30, 0, PI);
+    fill(#145a92);
+    stroke(#145a92);
+    arc(50, 425, 30, 30, PI, 2*PI);
+    */
+  } else if (currentPlayer ==2){
+    fill(#2196f3);
+    stroke(#2196f3);
+    circle(50, 425, 30);
+    /*
+    arc(50, 425, 30, 30, PI, 2*PI);
+    fill(#7b221b);
+    stroke(#7b221b);
+    arc(50, 425, 30, 30, 0, PI);
+    */
+  }
 }
 
 void highlight(){
