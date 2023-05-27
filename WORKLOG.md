@@ -36,3 +36,7 @@ I fixed a couple of bugs in Game (highlight and the constructor). I also edited 
 ### May 25
 
 Fixed another bug inside the game constructor, and then I made a method to draw a pawn and king so that we could have transparent backgrounds. I also made some minor changes to the colors of certain elements, and some other purely aesthetic changes (like making rectangle corners rounded).
+
+### May 26
+
+Today was a mostly graphics based day. I changed some colorings in the board and fixed some bugs so that our game logic would work out, but after that it was all visual. I finished draw() so that the screen would reflect the moves made by players. I also made a debug method to display information that isn't shown on screen. Then I designed a start, win, and lose screen on canva and imported it here so that things look very fancy and glow-y. The start screen has three buttons, only one of which works right now as we haven't coded the other two. The win/lose has two buttons, rematch and menu, but neither work right now. 
