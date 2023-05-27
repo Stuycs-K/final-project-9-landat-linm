@@ -9,8 +9,9 @@ int[] currentPiece = {-1, -1};
 int currentPlayer = -1;
 ArrayList<int[]> highlights;
 boolean gameOver = false;
+int winner = -1;
 Game game;
-PImage original, one, two, tutorial;
+PImage original, one, two, tutorial, blueWin, redWin;
 
 void setup() {
   size(750, 850);
@@ -20,6 +21,8 @@ void setup() {
   one = loadImage("singlePlayerStart.png");
   two = loadImage("twoPlayerStart.png");
   tutorial = loadImage("tutorialStart.png");
+  blueWin = loadImage("blueWin.png");
+  redWin = loadImage("redWin.png");
 }
 void draw() {
   background(#121115);
@@ -50,16 +53,22 @@ void draw() {
        */
     }
   } else if (MODE == START) {
-    if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435){
+    if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
       image(one, 0, 0);
-    } else if(mouseX < 550 && mouseX > 200 && mouseY > 472 && mouseY < 567){
+    } else if (mouseX < 550 && mouseX > 200 && mouseY > 472 && mouseY < 567) {
       image(two, 0, 0);
-    } else if(mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699){
+    } else if (mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699) {
       image(tutorial, 0, 0);
-    } else{
+    } else {
       image(original, 0, 0);
     }
   } else if (MODE == END) {
+    if (winner ==1){
+      image(redWin, 0, 0);
+    } else if (winner==2){
+      image(blueWin, 0, 0);
+    }
+    
   }
 }
 
@@ -116,40 +125,54 @@ void drawCards() {
 }
 
 void mouseClicked() {
-  if (currentPlayer == 1) {
-    if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
-      selectedCard = 0;
-    }
-    if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
-      selectedCard = 1;
-    }
-  }
-  if (currentPlayer == 2) {
-    if (mouseX > 100 && mouseX < 290 && mouseY > 38 && mouseY < 188) {
-      selectedCard = 2;
-    }
-    if (mouseX > 310 && mouseX < 500 && mouseY > 38 && mouseY < 188) {
-      selectedCard = 3;
+  if (MODE == START) {
+    if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
+      // nothing for now but it'll lead to the bot later
+    } else if (mouseX < 550 && mouseX > 200 && mouseY > 472 && mouseY < 567) {
+      MODE = TWOPLAYER;
+    } else if (mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699) {
+      // nothing for now but it'll lead to instructions later
     }
   }
-  if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
-    int row = game.whichTile(mouseX, mouseY)[0];
-    int col = game.whichTile(mouseX, mouseY)[1];
-    if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
-      currentPiece[0] = row;
-      currentPiece[1] = col;
-    } else if (selectedCard != -1 && currentPiece[0] != -1) {
-      if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-        if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-          gameOver = true;
-        } else {
-          currentPiece[0] = -1;
-          currentPiece[1] = -1;
-          selectedCard = -1;
-          if (currentPlayer == 1) {
-            currentPlayer++;
+
+  if (MODE == TWOPLAYER) {
+    if (currentPlayer == 1) {
+      if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
+        selectedCard = 0;
+      }
+      if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
+        selectedCard = 1;
+      }
+    }
+    if (currentPlayer == 2) {
+      if (mouseX > 100 && mouseX < 290 && mouseY > 38 && mouseY < 188) {
+        selectedCard = 2;
+      }
+      if (mouseX > 310 && mouseX < 500 && mouseY > 38 && mouseY < 188) {
+        selectedCard = 3;
+      }
+    }
+    if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
+      int row = game.whichTile(mouseX, mouseY)[0];
+      int col = game.whichTile(mouseX, mouseY)[1];
+      if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
+        currentPiece[0] = row;
+        currentPiece[1] = col;
+      } else if (selectedCard != -1 && currentPiece[0] != -1) {
+        if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+          if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+            gameOver = true;
+            MODE = END;
+            winner = currentPlayer;
           } else {
-            currentPlayer--;
+            currentPiece[0] = -1;
+            currentPiece[1] = -1;
+            selectedCard = -1;
+            if (currentPlayer == 1) {
+              currentPlayer++;
+            } else {
+              currentPlayer--;
+            }
           }
         }
       }
