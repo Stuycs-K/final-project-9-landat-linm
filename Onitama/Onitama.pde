@@ -15,8 +15,6 @@ PImage original, one, two, tutorial, blueWin, redWin, background;
 
 void setup() {
   size(750, 850);
-  game = new Game();
-  currentPlayer = 1;
   original = loadImage("defaultStart.png");
   one = loadImage("singlePlayerStart.png");
   two = loadImage("twoPlayerStart.png");
@@ -24,6 +22,15 @@ void setup() {
   tutorial = loadImage("tutorialStart.png");
   blueWin = loadImage("blueWin.png");
   redWin = loadImage("redWin.png");
+}
+
+void newTwoPlayerGame(){
+  game = new Game();
+  currentPlayer = 1;
+  selectedCard = -1;
+  currentPiece = new int[]{-1, -1};
+  gameOver = false;
+  winner = -1;
 }
 void draw() {
   background(#121115);
@@ -65,12 +72,16 @@ void draw() {
       image(original, 0, 0);
     }
   } else if (MODE == END) {
-    if (winner ==1){
+    if (winner ==1) {
       image(redWin, 0, 0);
-    } else if (winner==2){
+    } else if (winner==2) {
       image(blueWin, 0, 0);
     }
-    
+    if (mouseX > 200 && mouseX < 550 && mouseY > 384 && mouseY < 479) {
+      rect(0, 0, 10, 10);
+    } else if (mouseX > 200 && mouseX < 550 && mouseY > 517 && mouseY < 612) {
+      rect(0, 0, 10, 10);
+    }
   }
 }
 
@@ -132,6 +143,7 @@ void mouseClicked() {
       // nothing for now but it'll lead to the bot later
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 472 && mouseY < 567) {
       MODE = TWOPLAYER;
+      newTwoPlayerGame();
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699) {
       // nothing for now but it'll lead to instructions later
     }
@@ -178,6 +190,14 @@ void mouseClicked() {
           }
         }
       }
+    }
+  }
+  if (MODE == END) {
+    if (mouseX > 200 && mouseX < 550 && mouseY > 384 && mouseY < 479) {
+      MODE = TWOPLAYER;
+      newTwoPlayerGame();
+    } else if (mouseX > 200 && mouseX < 550 && mouseY > 517 && mouseY < 612) {
+      MODE = START;
     }
   }
 }
