@@ -38,28 +38,16 @@ void draw() {
     image(background, 0, 0);
     drawCards();
     game.display(100, 225);
-    //debugStrings();
+    debugStrings();
     highlight();
     if (currentPlayer ==1) {
       fill(#f44336);
       stroke(#f44336);
       circle(50, 425, 30);
-      /*
-    arc(50, 425, 30, 30, 0, PI);
-       fill(#145a92);
-       stroke(#145a92);
-       arc(50, 425, 30, 30, PI, 2*PI);
-       */
     } else if (currentPlayer ==2) {
       fill(#2196f3);
       stroke(#2196f3);
       circle(50, 425, 30);
-      /*
-    arc(50, 425, 30, 30, PI, 2*PI);
-       fill(#7b221b);
-       stroke(#7b221b);
-       arc(50, 425, 30, 30, 0, PI);
-       */
     }
   } else if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
@@ -127,6 +115,7 @@ void debugStrings() {
     }
   }
   text("won? " + gameOver, 20, 100);
+  text("current player: " + currentPlayer, 20, 120);
 }
 
 void drawCards() {
@@ -147,9 +136,7 @@ void mouseClicked() {
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699) {
       // nothing for now but it'll lead to instructions later
     }
-  }
-
-  if (MODE == TWOPLAYER) {
+  } else if (MODE == TWOPLAYER) {
     if (currentPlayer == 1) {
       if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
         selectedCard = 0;
@@ -176,8 +163,8 @@ void mouseClicked() {
         if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
           if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
             gameOver = true;
-            MODE = END;
             winner = currentPlayer;
+            MODE = END;
           } else {
             currentPiece[0] = -1;
             currentPiece[1] = -1;
@@ -191,8 +178,7 @@ void mouseClicked() {
         }
       }
     }
-  }
-  if (MODE == END) {
+  } else if (MODE == END) {
     if (mouseX > 200 && mouseX < 550 && mouseY > 384 && mouseY < 479) {
       MODE = TWOPLAYER;
       newTwoPlayerGame();
