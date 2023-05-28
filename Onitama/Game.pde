@@ -32,10 +32,10 @@ public class Game{
     if (temp != null && temp.getPieceType().equals("king")){
       return true;
     }
-    if (currentPlayer==1 && endRow==0 && endCol==2){
+    if (currentPlayer==1 && endRow==0 && endCol==2 && board[endRow][endCol].getPieceType().equals("king")){
       return true;
     }
-    if (currentPlayer==2 && endRow==4 && endCol==2){
+    if (currentPlayer==2 && endRow==4 && endCol==2 && board[endRow][endCol].getPieceType().equals("king")){
       return true;
     }
     return false;
