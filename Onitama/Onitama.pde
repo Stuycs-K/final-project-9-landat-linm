@@ -11,7 +11,7 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, redWin;
+PImage original, one, two, tutorial, blueWin, redWin, background;
 
 void setup() {
   size(750, 850);
@@ -20,6 +20,7 @@ void setup() {
   original = loadImage("defaultStart.png");
   one = loadImage("singlePlayerStart.png");
   two = loadImage("twoPlayerStart.png");
+  background = loadImage("background.png");
   tutorial = loadImage("tutorialStart.png");
   blueWin = loadImage("blueWin.png");
   redWin = loadImage("redWin.png");
@@ -27,9 +28,10 @@ void setup() {
 void draw() {
   background(#121115);
   if (MODE == TWOPLAYER) {
+    image(background, 0, 0);
     drawCards();
     game.display(100, 225);
-    debugStrings();
+    //debugStrings();
     highlight();
     if (currentPlayer ==1) {
       fill(#f44336);
