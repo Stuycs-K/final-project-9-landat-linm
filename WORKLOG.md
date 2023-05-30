@@ -40,3 +40,7 @@ Fixed another bug inside the game constructor, and then I made a method to draw 
 ### May 26
 
 Today was a mostly graphics based day. I changed some colorings in the board and fixed some bugs so that our game logic would work out, but after that it was all visual. I finished draw() so that the screen would reflect the moves made by players. I also made a debug method to display information that isn't shown on screen. Then I designed a start, win, and lose screen on canva and imported it here so that things look very fancy and glow-y. The start screen has three buttons, only one of which works right now as we haven't coded the other two. The win/lose has two buttons, rematch and menu, but neither work right now. 
+
+### May 27
+
+I changed the background of our game and also made the buttons when the game is over work. I also fixed our win condition so that it would work correctly.
