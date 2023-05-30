@@ -11,7 +11,7 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, redWin, background;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background;
 
 void setup() {
   size(750, 850);
@@ -21,10 +21,14 @@ void setup() {
   background = loadImage("background.png");
   tutorial = loadImage("tutorialStart.png");
   blueWin = loadImage("blueWin.png");
+  blueWinMenu = loadImage("blueWinMenu.png");
+  blueWinRematch = loadImage("blueWinRematch.png");
   redWin = loadImage("redWin.png");
+  redWinMenu = loadImage("redWinMenu.png");
+  redWinRematch = loadImage("redWinRematch.png");
 }
 
-void newTwoPlayerGame(){
+void newTwoPlayerGame() {
   game = new Game();
   currentPlayer = 1;
   selectedCard = -1;
@@ -66,9 +70,17 @@ void draw() {
       image(blueWin, 0, 0);
     }
     if (mouseX > 200 && mouseX < 550 && mouseY > 384 && mouseY < 479) {
-      rect(0, 0, 10, 10);
+      if (winner ==1) {
+        image(redWinRematch, 0, 0);
+      } else if (winner==2) {
+        image(blueWinRematch, 0, 0);
+      }
     } else if (mouseX > 200 && mouseX < 550 && mouseY > 517 && mouseY < 612) {
-      rect(0, 0, 10, 10);
+      if (winner ==1) {
+        image(redWinMenu, 0, 0);
+      } else if (winner==2) {
+        image(blueWinMenu, 0, 0);
+      }
     }
   }
 }
