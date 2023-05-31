@@ -9,7 +9,8 @@ public class Game {
       {null, null, null, null, null},
       {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), new Piece(1, "pawn"), new Piece(1, "pawn")}
     };
-    deck = new Cards[]{new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))])};
+    int[] index = rand5();
+    deck = new Cards[]{new Cards(cardPool[index[0]]), new Cards(cardPool[index[1]]), new Cards(cardPool[index[2]]), new Cards(cardPool[index[3]]), new Cards(cardPool[index[4]])};
     deck[2].flip();
     deck[3].flip();
   }
