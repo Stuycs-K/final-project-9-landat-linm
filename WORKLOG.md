@@ -44,3 +44,7 @@ Today was a mostly graphics based day. I changed some colorings in the board and
 ### May 27
 
 I changed the background of our game and also made the buttons when the game is over work. I also fixed our win condition so that it would work correctly.
+
+### May 30
+
+Added in a few more images so that when you hover your mouse over the buttons, it changes colors. I started working on a dropdown menu, but for now thats just on Canva, so no code for it yet. 
