@@ -173,7 +173,12 @@ void mouseClicked() {
         currentPiece[1] = col;
       } else if (selectedCard != -1 && currentPiece[0] != -1) {
         if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-          if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+          Boolean won = game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
+          Cards used = game.deck[selectedCard];
+          game.deck[selectedCard] = game.deck[4];
+          game.deck[4] = used;
+          game.deck[4].flip();
+          if (won) {
             gameOver = true;
             winner = currentPlayer;
             MODE = END;
