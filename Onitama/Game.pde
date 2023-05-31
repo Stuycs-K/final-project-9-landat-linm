@@ -16,6 +16,25 @@ public class Game {
   public Cards[] getDeck() {
     return deck;
   }
+  
+  public int[] rand5(){
+    int[] sequence = new int[5];
+    int x = 0;
+    for (int i = 0; i < 5; i++){
+      boolean diff = false;
+      while (!diff){
+        x=(int)(random(16));
+        diff = true;
+        for (int j = 0; j < i; j++){
+          if (sequence[j]==x){
+            diff = false;
+          }
+        }
+      }
+      sequence[i]=x;
+    }
+    return sequence;
+  }
 
   private boolean canMove(int cardNum, int startRow, int startCol, int endRow, int endCol, int currentPlayer) {
     if (deck[cardNum].isValid(startRow, startCol, endRow, endCol)) {
