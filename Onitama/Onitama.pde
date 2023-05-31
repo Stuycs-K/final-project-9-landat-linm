@@ -42,7 +42,7 @@ void draw() {
     image(background, 0, 0);
     drawCards();
     game.display(100, 225);
-    debugStrings();
+    //debugStrings();
     highlight();
     if (currentPlayer ==1) {
       fill(#f44336);
