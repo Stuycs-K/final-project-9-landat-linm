@@ -72,6 +72,13 @@ public class Cards {
       Grid = "N/A";
     }
   }
+  
+  public void flip(){
+    for (int i = 0; i < validMoves.length; i++){
+      validMoves[i][0] = -validMoves[i][0];
+      validMoves[i][1] = -validMoves[i][1];
+    }
+  }
 
   public int[][] getValidMoves() {
     return validMoves;
