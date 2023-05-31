@@ -75,8 +75,8 @@ public class Cards {
   
   public void flip(){
     for (int i = 0; i < validMoves.length; i++){
-      validMoves[i][0] = validMoves[i][0];
-      validMoves[i][1] = validMoves[i][1];
+      validMoves[i][0] = -validMoves[i][0];
+      validMoves[i][1] = -validMoves[i][1];
     }
   }
 
