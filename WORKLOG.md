@@ -48,3 +48,7 @@ I changed the background of our game and also made the buttons when the game is 
 ### May 30
 
 Added in a few more images so that when you hover your mouse over the buttons, it changes colors. I started working on a dropdown menu, but for now thats just on Canva, so no code for it yet. 
+
+### May 31
+
+Mostly worked on the cards today. I wrote a flip method for the cards so that player 1 and player will have the same moves (from their respective points of view) rather than a flipped version of each other. I also wrote rand5() to produce a list of 5 different values, so that there would be no duplicates in our starting deck. And finally, I added in the rotation of cards.
