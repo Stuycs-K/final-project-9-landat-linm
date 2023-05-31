@@ -9,12 +9,32 @@ public class Game {
       {null, null, null, null, null},
       {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), new Piece(1, "pawn"), new Piece(1, "pawn")}
     };
-    deck = new Cards[]{new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))]), new Cards(cardPool[int(random(16))])};
+    int[] index = rand5();
+    deck = new Cards[]{new Cards(cardPool[index[0]]), new Cards(cardPool[index[1]]), new Cards(cardPool[index[2]]), new Cards(cardPool[index[3]]), new Cards(cardPool[index[4]])};
     deck[2].flip();
     deck[3].flip();
   }
   public Cards[] getDeck() {
     return deck;
+  }
+  
+  public int[] rand5(){
+    int[] sequence = new int[5];
+    int x = 0;
+    for (int i = 0; i < 5; i++){
+      boolean diff = false;
+      while (!diff){
+        x=(int)(random(16));
+        diff = true;
+        for (int j = 0; j < i; j++){
+          if (sequence[j]==x){
+            diff = false;
+          }
+        }
+      }
+      sequence[i]=x;
+    }
+    return sequence;
   }
 
   private boolean canMove(int cardNum, int startRow, int startCol, int endRow, int endCol, int currentPlayer) {
