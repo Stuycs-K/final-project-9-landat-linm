@@ -20,7 +20,7 @@ void setup() {
   one = loadImage("singlePlayerStart.png");
   two = loadImage("twoPlayerStart.png");
   background = loadImage("background.png");
-  backgroundMenu = loadImage("background.png");
+  backgroundMenu = loadImage("backgroundMenu.png");
   tutorial = loadImage("tutorialStart.png");
   blueWin = loadImage("blueWin.png");
   blueWinMenu = loadImage("blueWinMenu.png");
@@ -44,11 +44,9 @@ void draw() {
   if (MODE == TWOPLAYER) {
     if (menu){
       image(backgroundMenu, 0, 0);
-      rect(0, 0, 10, 10);
     } else{
       image(background, 0, 0);
     }
-    
     drawCards();
     game.display(100, 225);
     //debugStrings();
@@ -158,6 +156,17 @@ void mouseClicked() {
       // nothing for now but it'll lead to instructions later
     }
   } else if (MODE == TWOPLAYER) {
+    if (mouseX > 717 && mouseX < 737 && mouseY > 11 && mouseY < 44){
+      menu = !menu;
+    } else if (menu){
+      if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 39 && mouseY < 70){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 70 && mouseY < 101){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 132 && mouseY < 163){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 163 && mouseY < 194){
+      }
+    }
     if (currentPlayer == 1) {
       if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
         selectedCard = 0;
