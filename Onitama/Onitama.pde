@@ -160,9 +160,15 @@ void mouseClicked() {
       menu = !menu;
     } else if (menu){
       if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39){
-      } else if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39){
+        MODE = START;
       } else if (mouseX > 649 && mouseX < 734 && mouseY > 39 && mouseY < 70){
+        newTwoPlayerGame();
       } else if (mouseX > 649 && mouseX < 734 && mouseY > 70 && mouseY < 101){
+        winner = 2;
+        MODE = END;
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 101 && mouseY < 132){
+        winner = 1;
+        MODE = END;
       } else if (mouseX > 649 && mouseX < 734 && mouseY > 132 && mouseY < 163){
       } else if (mouseX > 649 && mouseX < 734 && mouseY > 163 && mouseY < 194){
       }
