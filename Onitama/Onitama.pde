@@ -11,7 +11,8 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu;
+boolean menu = false;
 
 void setup() {
   size(750, 850);
@@ -19,6 +20,7 @@ void setup() {
   one = loadImage("singlePlayerStart.png");
   two = loadImage("twoPlayerStart.png");
   background = loadImage("background.png");
+  backgroundMenu = loadImage("background.png");
   tutorial = loadImage("tutorialStart.png");
   blueWin = loadImage("blueWin.png");
   blueWinMenu = loadImage("blueWinMenu.png");
@@ -35,11 +37,18 @@ void newTwoPlayerGame() {
   currentPiece = new int[]{-1, -1};
   gameOver = false;
   winner = -1;
+  menu = false;
 }
 void draw() {
   background(#121115);
   if (MODE == TWOPLAYER) {
-    image(background, 0, 0);
+    if (menu){
+      image(backgroundMenu, 0, 0);
+      rect(0, 0, 10, 10);
+    } else{
+      image(background, 0, 0);
+    }
+    
     drawCards();
     game.display(100, 225);
     //debugStrings();
