@@ -14,6 +14,26 @@ public class Game {
     deck[2].flip();
     deck[3].flip();
   }
+  public Game(String type){
+    if (type.equals("capture")){
+      board = new Piece[][]{{new Piece(2, "pawn"), null, null, new Piece(2, "pawn"), new Piece(2, "pawn")}, 
+                            {new Piece(2, "pawn"), null, null, null, null},
+                            {null, null, new Piece(2, "king"), null, null},
+                            {null, null, null, null, new Piece(1, "pawn")},
+                            {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), null, new Piece(1, "pawn")}};
+      deck = new Cards[]{new Cards("DRAGON"), new Cards("TIGER"), new Cards("GOOSE"), new Cards("OX"), new Cards("COBRA")};
+    } else if (type.equals("temple")){
+      board = new Piece[][]{{new Piece(2, "pawn"), new Piece(2, "pawn"), null, new Piece(2, "pawn"), new Piece(2, "pawn")}, 
+                            {null, null, null, null, new Piece(2, "king")},
+                            {null, null, new Piece(1, "king"), null, null},
+                            {null, null, null, null, null},
+                            {new Piece(1, "pawn"), new Piece(1, "pawn"), null, new Piece(1, "pawn"), new Piece(1, "pawn")}};
+      deck = new Cards[]{new Cards("DRAGON"), new Cards("TIGER"), new Cards("GOOSE"), new Cards("OX"), new Cards("COBRA")};
+    } else{
+      board = null;
+      deck = null;
+    }
+  }
   public Cards[] getDeck() {
     return deck;
   }

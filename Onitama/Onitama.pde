@@ -170,7 +170,11 @@ void mouseClicked() {
         winner = 1;
         MODE = END;
       } else if (mouseX > 649 && mouseX < 734 && mouseY > 132 && mouseY < 163){
+        newTwoPlayerGame();
+        game = new Game("capture");
       } else if (mouseX > 649 && mouseX < 734 && mouseY > 163 && mouseY < 194){
+        newTwoPlayerGame();
+        game = new Game("temple");
       }
     }
     if (currentPlayer == 1) {
