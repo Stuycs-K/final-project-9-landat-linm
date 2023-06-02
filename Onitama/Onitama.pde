@@ -38,11 +38,11 @@ void newTwoPlayerGame() {
 }
 void draw() {
   background(#121115);
-  if (MODE == TWOPLAYER) {
+  if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
     image(background, 0, 0);
     drawCards();
     game.display(100, 225);
-    //debugStrings();
+    debugStrings();
     highlight();
     if (currentPlayer ==1) {
       fill(#f44336);
@@ -52,6 +52,9 @@ void draw() {
       fill(#2196f3);
       stroke(#2196f3);
       circle(50, 425, 30);
+      if (MODE == ONEPLAYER){
+        botmove();
+      }
     }
   } else if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
@@ -82,7 +85,7 @@ void draw() {
         image(blueWinMenu, 0, 0);
       }
     }
-  }
+  } 
 }
 
 void highlight() {
@@ -141,7 +144,8 @@ void drawCards() {
 void mouseClicked() {
   if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
-      // nothing for now but it'll lead to the bot later
+      MODE = ONEPLAYER;
+      newTwoPlayerGame();
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 472 && mouseY < 567) {
       MODE = TWOPLAYER;
       newTwoPlayerGame();
@@ -197,5 +201,111 @@ void mouseClicked() {
     } else if (mouseX > 200 && mouseX < 550 && mouseY > 517 && mouseY < 612) {
       MODE = START;
     }
+  } else if (MODE == ONEPLAYER) {
+    if (currentPlayer == 1) {
+      if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
+        selectedCard = 0;
+      }
+      if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
+        selectedCard = 1;
+      }
+    if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
+      int row = game.whichTile(mouseX, mouseY)[0];
+      int col = game.whichTile(mouseX, mouseY)[1];
+      if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
+        currentPiece[0] = row;
+        currentPiece[1] = col;
+      } else if (selectedCard != -1 && currentPiece[0] != -1) {
+        if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+          if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+            gameOver = true;
+            winner = currentPlayer;
+            MODE = END;
+          } else {
+            currentPiece[0] = -1;
+            currentPiece[1] = -1;
+            selectedCard = -1;
+            if (currentPlayer == 1) {
+              currentPlayer++;
+            } else {
+              currentPlayer--;
+            }
+          }
+        }
+      }
+    }
+  } 
+}
+}
+boolean botmove(){
+  for (int i = 0; i < 5; i++){
+    for (int j = 0; j < 5; j++){
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2){
+        for (int k = 0; k < 2; k++){
+          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
+          for (int l = 0; l < possibleMoves.size(); l++){
+            Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
+            System.out.println(temp);
+            if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))){
+              game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+              gameOver = true;
+              winner = currentPlayer;
+              MODE = END;
+              return true;
+            }
+          }
+        }
+      }
+    }
   }
+  for (int i = 0; i < 5; i++){
+    for (int j = 0; j < 5; j++){
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2){
+        for (int k = 0; k < 2; k++){
+          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
+          for (int l = 0; l < possibleMoves.size(); l++){
+            Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
+            if (temp != null && temp.getPlayer() == 1){
+              game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+              currentPiece[0] = -1;
+              currentPiece[1] = -1;
+              selectedCard = -1;
+              currentPlayer--;
+              return true;
+            }
+          }
+        }
+      }
+    }
+  }
+  int startRow = 0;
+  int startCol = 0;
+  int whichCard = 0;
+  int minRow = 4;
+  int whichMove = 0;
+  for (int i = 0; i < 5; i++){
+    for (int j = 0; j < 5; j++){
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2){
+        for (int k = 0; k < 2; k++){
+          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
+          for (int l = 0; l < possibleMoves.size(); l++){
+            if (possibleMoves.get(l)[0] < minRow){
+              minRow = possibleMoves.get(l)[0];
+              whichMove = l;
+              startRow = i;
+              startCol = j;
+              whichCard = k;
+            }
+          }
+        }
+      }
+    }
+  }
+  ArrayList<int[]> possibleMoves = game.highlight(startRow, startCol, 2, game.deck[whichCard]);
+  game.move(startRow, startCol, possibleMoves.get(whichMove)[0], possibleMoves.get(whichMove)[1], 2);
+  currentPiece[0] = -1;
+  currentPiece[1] = -1;
+  selectedCard = -1;
+  currentPlayer--;
+  return true;
 }
