@@ -11,7 +11,8 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu;
+boolean menu = false;
 
 void setup() {
   size(750, 850);
@@ -19,6 +20,7 @@ void setup() {
   one = loadImage("singlePlayerStart.png");
   two = loadImage("twoPlayerStart.png");
   background = loadImage("background.png");
+  backgroundMenu = loadImage("backgroundMenu.png");
   tutorial = loadImage("tutorialStart.png");
   blueWin = loadImage("blueWin.png");
   blueWinMenu = loadImage("blueWinMenu.png");
@@ -35,14 +37,19 @@ void newTwoPlayerGame() {
   currentPiece = new int[]{-1, -1};
   gameOver = false;
   winner = -1;
+  menu = false;
 }
 void draw() {
   background(#121115);
   if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
-    image(background, 0, 0);
+    if (menu){
+      image(backgroundMenu, 0, 0);
+    } else{
+      image(background, 0, 0);
+    }
     drawCards();
     game.display(100, 225);
-    debugStrings();
+    //debugStrings();
     highlight();
     if (currentPlayer ==1) {
       fill(#f44336);
@@ -87,6 +94,7 @@ void draw() {
     }
   } 
 }
+
 
 void highlight() {
   if (selectedCard != -1 && currentPiece[0] != -1) {
@@ -153,6 +161,27 @@ void mouseClicked() {
       // nothing for now but it'll lead to instructions later
     }
   } else if (MODE == TWOPLAYER) {
+    if (mouseX > 717 && mouseX < 737 && mouseY > 11 && mouseY < 44){
+      menu = !menu;
+    } else if (menu){
+      if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39){
+        MODE = START;
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 39 && mouseY < 70){
+        newTwoPlayerGame();
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 70 && mouseY < 101){
+        winner = 2;
+        MODE = END;
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 101 && mouseY < 132){
+        winner = 1;
+        MODE = END;
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 132 && mouseY < 163){
+        newTwoPlayerGame();
+        game = new Game("capture");
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 163 && mouseY < 194){
+        newTwoPlayerGame();
+        game = new Game("temple");
+      }
+    }
     if (currentPlayer == 1) {
       if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
         selectedCard = 0;
@@ -177,7 +206,12 @@ void mouseClicked() {
         currentPiece[1] = col;
       } else if (selectedCard != -1 && currentPiece[0] != -1) {
         if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-          if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+          Boolean won = game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
+          Cards used = game.deck[selectedCard];
+          game.deck[selectedCard] = game.deck[4];
+          game.deck[4] = used;
+          game.deck[4].flip();
+          if (won) {
             gameOver = true;
             winner = currentPlayer;
             MODE = END;
