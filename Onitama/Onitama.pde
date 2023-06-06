@@ -4,6 +4,7 @@ static int ONEPLAYER = 2;
 static int TUTORIAL = -1;
 static int END = 3;
 static int MODE = START;
+static int PASTMODE;
 int selectedCard = -1;
 int[] currentPiece = {-1, -1};
 int currentPlayer = -1;
@@ -153,14 +154,16 @@ void mouseClicked() {
   if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
       MODE = ONEPLAYER;
+      PASTMODE = ONEPLAYER;
       newTwoPlayerGame();
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 472 && mouseY < 567) {
       MODE = TWOPLAYER;
+      PASTMODE = TWOPLAYER;
       newTwoPlayerGame();
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699) {
       // nothing for now but it'll lead to instructions later
     }
-  } else if (MODE == TWOPLAYER) {
+  } else if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
     if (mouseX > 717 && mouseX < 737 && mouseY > 11 && mouseY < 44){
       menu = !menu;
     } else if (menu){
@@ -230,7 +233,7 @@ void mouseClicked() {
     }
   } else if (MODE == END) {
     if (mouseX > 200 && mouseX < 550 && mouseY > 384 && mouseY < 479) {
-      MODE = TWOPLAYER;
+      MODE = PASTMODE;
       newTwoPlayerGame();
     } else if (mouseX > 200 && mouseX < 550 && mouseY > 517 && mouseY < 612) {
       MODE = START;
