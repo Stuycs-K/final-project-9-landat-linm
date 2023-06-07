@@ -16,8 +16,8 @@ public class Game {
   }
   public Game(String type){
     if (type.equals("capture")){
-      board = new Piece[][]{{new Piece(2, "pawn"), null, null, new Piece(2, "pawn"), new Piece(2, "pawn")}, 
-                            {new Piece(2, "pawn"), null, null, null, null},
+      board = new Piece[][]{{new Piece(2, "pawn"), null, null, new Piece(2, "pawn"), null}, 
+                            {new Piece(2, "pawn"), null, null, null, new Piece(2, "pawn")},
                             {null, null, new Piece(2, "king"), null, null},
                             {null, null, null, null, new Piece(1, "pawn")},
                             {new Piece(1, "pawn"), new Piece(1, "pawn"), new Piece(1, "king"), null, new Piece(1, "pawn")}};
