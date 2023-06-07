@@ -80,3 +80,7 @@ Added in a few more images so that when you hover your mouse over the buttons, i
 ### May 31
 
 Mostly worked on the cards today. I wrote a flip method for the cards so that player 1 and player will have the same moves (from their respective points of view) rather than a flipped version of each other. I also wrote rand5() to produce a list of 5 different values, so that there would be no duplicates in our starting deck. And finally, I added in the rotation of cards. I also added in a dropdown menu during the game that allows you to return to the menu, restart the game, go to the red/blue win screen, skip to a position where you can capture the king, and skip to a position where you can reach the temple.
+
+### June 6
+
+I fixed some bugs in class today. Mostly, with how the one player mode worked with the buttons. I changed some booleans to make the dropdown work in one player mode and also changed rematch a little. Previously, rematch would go immediately to two player, but I changed it so that it went to the last played mode.
