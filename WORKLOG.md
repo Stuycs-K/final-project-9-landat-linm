@@ -42,6 +42,10 @@ Continued working on botmove(), but didn't save :skull:.
 
 Unfortunately past 7 AM, finished botmove() by finishing the capture conditions by using a similar strategy to may 31, then added the greedy alternative algorithm.
 
+### June 6
+
+Today I changed the highlight method in Onitama.pde to make the highlight more easily visible.
+
 
 ## Mikayla Lin
 
