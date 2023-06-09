@@ -172,7 +172,10 @@ void mouseClicked() {
         TUTORIALPAGE++;
       } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
         TUTORIALPAGE--;
-      } else if (TUTORIALPAGE == 2) {
+      }
+    } else if (TUTORIALPAGE == 2) {
+      if (mouseX > 200 && mouseX < 551 && mouseY > 424 && mouseY < 520){
+        newTwoPlayerGame();
       }
     }
   } else if (MODE == START) {
