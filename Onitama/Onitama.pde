@@ -13,7 +13,7 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3, page4, page5, page6;
 PImage[] tut;
 boolean menu = false;
 
@@ -34,7 +34,10 @@ void setup() {
   page1 = loadImage("page1.png");
   page2 = loadImage("page2.png");
   page3 = loadImage("page3.png");
-  tut = new PImage[]{page1, page2, page3};
+  page4 = loadImage("page4.png");
+  page5 = loadImage("page5.png");
+  page6 = loadImage("page6.png");
+  tut = new PImage[]{page1, page2, page3, page4, page5, page6};
 }
 
 void newTwoPlayerGame() {
@@ -166,6 +169,12 @@ void mouseClicked() {
     if (TUTORIALPAGE == 0) {
       if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
         TUTORIALPAGE++;
+      }
+    } else if (true){
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE++;
+      } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE--;
       }
     } else if (TUTORIALPAGE == 1) {
       if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
