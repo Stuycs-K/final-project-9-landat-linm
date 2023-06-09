@@ -5,6 +5,7 @@ static int TUTORIAL = -1;
 static int END = 3;
 static int MODE = START;
 static int PASTMODE;
+static int TUTORIALPAGE = 0;
 int selectedCard = -1;
 int[] currentPiece = {-1, -1};
 int currentPlayer = -1;
@@ -12,7 +13,8 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3;
+PImage[] tut;
 boolean menu = false;
 
 void setup() {
@@ -29,6 +31,10 @@ void setup() {
   redWin = loadImage("redWin.png");
   redWinMenu = loadImage("redWinMenu.png");
   redWinRematch = loadImage("redWinRematch.png");
+  page1 = loadImage("page1.png");
+  page2 = loadImage("page2.png");
+  page3 = loadImage("page3.png");
+  tut = new PImage[]{page1, page2, page3};
 }
 
 void newTwoPlayerGame() {
@@ -42,10 +48,13 @@ void newTwoPlayerGame() {
 }
 void draw() {
   background(#121115);
+  if (MODE == TUTORIAL) {
+    image(tut[TUTORIALPAGE], 0, 0);
+  }
   if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
-    if (menu){
+    if (menu) {
       image(backgroundMenu, 0, 0);
-    } else{
+    } else {
       image(background, 0, 0);
     }
     drawCards();
@@ -60,7 +69,7 @@ void draw() {
       fill(#2196f3);
       stroke(#2196f3);
       circle(50, 425, 30);
-      if (MODE == ONEPLAYER){
+      if (MODE == ONEPLAYER) {
         botmove();
       }
     }
@@ -93,7 +102,7 @@ void draw() {
         image(blueWinMenu, 0, 0);
       }
     }
-  } 
+  }
 }
 
 
@@ -151,7 +160,22 @@ void drawCards() {
 }
 
 void mouseClicked() {
-  if (MODE == START) {
+  if (MODE == TUTORIAL) {
+    // right arrow: 701 - 740, 392 - 458
+    // left arrow: 10 - 49, 792 - 458
+    if (TUTORIALPAGE == 0) {
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE++;
+      }
+    } else if (TUTORIALPAGE == 1) {
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE++;
+      } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE--;
+      } else if (TUTORIALPAGE == 2) {
+      }
+    }
+  } else if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
       MODE = ONEPLAYER;
       PASTMODE = ONEPLAYER;
@@ -161,26 +185,26 @@ void mouseClicked() {
       PASTMODE = TWOPLAYER;
       newTwoPlayerGame();
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699) {
-      // nothing for now but it'll lead to instructions later
+      MODE = TUTORIAL;
     }
   } else if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
-    if (mouseX > 717 && mouseX < 737 && mouseY > 11 && mouseY < 44){
+    if (mouseX > 717 && mouseX < 737 && mouseY > 11 && mouseY < 44) {
       menu = !menu;
-    } else if (menu){
-      if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39){
+    } else if (menu) {
+      if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39) {
         MODE = START;
-      } else if (mouseX > 649 && mouseX < 734 && mouseY > 39 && mouseY < 70){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 39 && mouseY < 70) {
         newTwoPlayerGame();
-      } else if (mouseX > 649 && mouseX < 734 && mouseY > 70 && mouseY < 101){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 70 && mouseY < 101) {
         winner = 2;
         MODE = END;
-      } else if (mouseX > 649 && mouseX < 734 && mouseY > 101 && mouseY < 132){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 101 && mouseY < 132) {
         winner = 1;
         MODE = END;
-      } else if (mouseX > 649 && mouseX < 734 && mouseY > 132 && mouseY < 163){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 132 && mouseY < 163) {
         newTwoPlayerGame();
         game = new Game("capture");
-      } else if (mouseX > 649 && mouseX < 734 && mouseY > 163 && mouseY < 194){
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 163 && mouseY < 194) {
         newTwoPlayerGame();
         game = new Game("temple");
       }
@@ -246,44 +270,44 @@ void mouseClicked() {
       if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
         selectedCard = 1;
       }
-    if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
-      int row = game.whichTile(mouseX, mouseY)[0];
-      int col = game.whichTile(mouseX, mouseY)[1];
-      if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
-        currentPiece[0] = row;
-        currentPiece[1] = col;
-      } else if (selectedCard != -1 && currentPiece[0] != -1) {
-        if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-          if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-            gameOver = true;
-            winner = currentPlayer;
-            MODE = END;
-          } else {
-            currentPiece[0] = -1;
-            currentPiece[1] = -1;
-            selectedCard = -1;
-            if (currentPlayer == 1) {
-              currentPlayer++;
+      if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
+        int row = game.whichTile(mouseX, mouseY)[0];
+        int col = game.whichTile(mouseX, mouseY)[1];
+        if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
+          currentPiece[0] = row;
+          currentPiece[1] = col;
+        } else if (selectedCard != -1 && currentPiece[0] != -1) {
+          if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+            if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+              gameOver = true;
+              winner = currentPlayer;
+              MODE = END;
             } else {
-              currentPlayer--;
+              currentPiece[0] = -1;
+              currentPiece[1] = -1;
+              selectedCard = -1;
+              if (currentPlayer == 1) {
+                currentPlayer++;
+              } else {
+                currentPlayer--;
+              }
             }
           }
         }
       }
     }
-  } 
+  }
 }
-}
-boolean botmove(){
-  for (int i = 0; i < 5; i++){
-    for (int j = 0; j < 5; j++){
-      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2){
-        for (int k = 0; k < 2; k++){
+boolean botmove() {
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
+        for (int k = 0; k < 2; k++) {
           ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-          for (int l = 0; l < possibleMoves.size(); l++){
+          for (int l = 0; l < possibleMoves.size(); l++) {
             Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
             System.out.println(temp);
-            if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))){
+            if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))) {
               game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
               gameOver = true;
               winner = currentPlayer;
@@ -295,14 +319,14 @@ boolean botmove(){
       }
     }
   }
-  for (int i = 0; i < 5; i++){
-    for (int j = 0; j < 5; j++){
-      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2){
-        for (int k = 0; k < 2; k++){
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
+        for (int k = 0; k < 2; k++) {
           ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-          for (int l = 0; l < possibleMoves.size(); l++){
+          for (int l = 0; l < possibleMoves.size(); l++) {
             Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
-            if (temp != null && temp.getPlayer() == 1){
+            if (temp != null && temp.getPlayer() == 1) {
               game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
               currentPiece[0] = -1;
               currentPiece[1] = -1;
@@ -320,13 +344,13 @@ boolean botmove(){
   int whichCard = 0;
   int minRow = 4;
   int whichMove = 0;
-  for (int i = 0; i < 5; i++){
-    for (int j = 0; j < 5; j++){
-      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2){
-        for (int k = 0; k < 2; k++){
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
+        for (int k = 0; k < 2; k++) {
           ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-          for (int l = 0; l < possibleMoves.size(); l++){
-            if (possibleMoves.get(l)[0] < minRow){
+          for (int l = 0; l < possibleMoves.size(); l++) {
+            if (possibleMoves.get(l)[0] < minRow) {
               minRow = possibleMoves.get(l)[0];
               whichMove = l;
               startRow = i;
