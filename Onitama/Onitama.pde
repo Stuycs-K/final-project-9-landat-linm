@@ -66,32 +66,32 @@ void draw() {
   background(#121115);
   if (MODE == TUTORIAL) {
     image(tut[TUTORIALPAGE-1], 0, 0);
-    if (TUTORIALPAGE == 1){
+    if (TUTORIALPAGE == 1) {
       if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
         image(page1a, 0, 0);
       }
-    } else if (TUTORIALPAGE == 2){
+    } else if (TUTORIALPAGE == 2) {
       if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
         image(page2b, 0, 0);
       } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
         image(page2a, 0, 0);
       }
-    } else if (TUTORIALPAGE == 3){
+    } else if (TUTORIALPAGE == 3) {
       if (mouseX > 200 && mouseX < 551 && mouseY > 424 && mouseY < 520) {
         image(page3a, 0, 0);
       }
-    } else if (TUTORIALPAGE == 7){
+    } else if (TUTORIALPAGE == 7) {
       if (mouseX > 700 && mouseX < 730 && mouseY > 648 && mouseY < 699) {
         image(page7a, 0, 0);
       }
-    } else if (TUTORIALPAGE == 8){
+    } else if (TUTORIALPAGE == 8) {
       if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
         image(page8a, 0, 0);
       }
-    } else if (TUTORIALPAGE == 9){
-      if (mouseX > 200 && mouseX < 550 && mouseY > 452 && mouseY < 548){
+    } else if (TUTORIALPAGE == 9) {
+      if (mouseX > 200 && mouseX < 550 && mouseY > 452 && mouseY < 548) {
         image(page9a, 0, 0);
-      } else if (mouseX > 200 && mouseX < 550 && mouseY > 585 && mouseY < 681){
+      } else if (mouseX > 200 && mouseX < 550 && mouseY > 585 && mouseY < 681) {
         image(page9b, 0, 0);
       }
     }
@@ -285,9 +285,9 @@ void mouseClicked() {
         TUTORIALPAGE++;
       }
     } else if (TUTORIALPAGE == 9) {
-      if (mouseX > 200 && mouseX < 550 && mouseY > 384 && mouseY < 479) {
+      if (mouseX > 200 && mouseX < 550 && mouseY > 452 && mouseY < 548) {
         TUTORIALPAGE = 1;
-      } else if (mouseX > 200 && mouseX < 550 && mouseY > 517 && mouseY < 612) {
+      } else if (mouseX > 200 && mouseX < 550 && mouseY > 585 && mouseY < 681) {
         TUTORIALPAGE = 1;
         MODE = START;
       }
