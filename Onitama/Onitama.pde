@@ -37,7 +37,7 @@ void setup() {
   page4 = loadImage("page4.png");
   page5 = loadImage("page5.png");
   page6 = loadImage("page6.png");
-  page7 = loadImage("page6.png");
+  page7 = loadImage("page7.png");
   tut = new PImage[]{page1, page2, page3, page4, page5, page6, page7};
 }
 
@@ -223,6 +223,9 @@ void mouseClicked() {
               game.deck[4] = used;
               game.deck[4].flip();
               currentPlayer++;
+              currentPiece[0] = -1;
+              currentPiece[1] = -1;
+              selectedCard = -1;
               TUTORIALPAGE++;
             }
           }
