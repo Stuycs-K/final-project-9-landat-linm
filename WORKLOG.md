@@ -84,3 +84,7 @@ Mostly worked on the cards today. I wrote a flip method for the cards so that pl
 ### June 6
 
 I fixed some bugs in class today. Mostly, with how the one player mode worked with the buttons. I changed some booleans to make the dropdown work in one player mode and also changed rematch a little. Previously, rematch would go immediately to two player, but I changed it so that it went to the last played mode.
+
+### June 8
+
+I edited the capture cheat so that you can test out capturing a pawn as well. After that, I mostly worked on the tutorial. I designed the first six pages on Canvas and added them to the code. Currently the first three are complete and they just describe how to play. I have left right arrows that you can click to cycle through the pages. I'm still working on pages 4-6, which will be a limited version of our actual game. The actual game will be overlayed over the text, so we can have guided gameplay.
