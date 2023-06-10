@@ -5,7 +5,7 @@ static int TUTORIAL = -1;
 static int END = 3;
 static int MODE = START;
 static int PASTMODE;
-static int TUTORIALPAGE = 0;
+static int TUTORIALPAGE = 1;
 int selectedCard = -1;
 int[] currentPiece = {-1, -1};
 int currentPlayer = -1;
@@ -52,7 +52,15 @@ void newTwoPlayerGame() {
 void draw() {
   background(#121115);
   if (MODE == TUTORIAL) {
-    image(tut[TUTORIALPAGE], 0, 0);
+    image(tut[TUTORIALPAGE-1], 0, 0);
+    if (TUTORIALPAGE == 4 || TUTORIALPAGE == 5 || TUTORIALPAGE == 6) {
+      drawCards();
+      game.display(100, 225);
+      highlight();
+      fill(#f44336);
+      stroke(#f44336);
+      circle(50, 425, 30);
+    }
   }
   if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
     if (menu) {
@@ -166,26 +174,43 @@ void mouseClicked() {
   if (MODE == TUTORIAL) {
     // right arrow: 701 - 740, 392 - 458
     // left arrow: 10 - 49, 792 - 458
-    if (TUTORIALPAGE == 0) {
+    if (TUTORIALPAGE == 1) {
       if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
         TUTORIALPAGE++;
-      }
-    } else if (true){
-      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
-        TUTORIALPAGE++;
-      } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
-        TUTORIALPAGE--;
-      }
-    } else if (TUTORIALPAGE == 1) {
-      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
-        TUTORIALPAGE++;
-      } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
-        TUTORIALPAGE--;
       }
     } else if (TUTORIALPAGE == 2) {
-      if (mouseX > 200 && mouseX < 551 && mouseY > 424 && mouseY < 520){
-        newTwoPlayerGame();
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE++;
+      } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE--;
       }
+    } else if (TUTORIALPAGE == 3) {
+      if (mouseX > 200 && mouseX < 551 && mouseY > 424 && mouseY < 520) {
+        newTwoPlayerGame();
+        TUTORIALPAGE++;
+      }
+    } else if (TUTORIALPAGE == 4) {
+      if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
+        selectedCard = 0;
+        TUTORIALPAGE++;
+      }
+      if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
+        selectedCard = 1;
+        TUTORIALPAGE++;
+      }
+    } else if (TUTORIALPAGE == 5) {
+      if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
+        int row = game.whichTile(mouseX, mouseY)[0];
+        int col = game.whichTile(mouseX, mouseY)[1];
+        if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
+          currentPiece[0] = row;
+          currentPiece[1] = col;
+        }
+      }
+    } else if (TUTORIALPAGE == 6) {
+      // if a move is chosen
+    } else if (TUTORIALPAGE == 7) {
+      // if the next button is chosen
     }
   } else if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
