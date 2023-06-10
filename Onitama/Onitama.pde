@@ -13,7 +13,7 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3, page4, page5, page6, page7;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3, page4, page5, page6, page7, page8, page9;
 PImage[] tut;
 boolean menu = false;
 
@@ -38,7 +38,9 @@ void setup() {
   page5 = loadImage("page5.png");
   page6 = loadImage("page6.png");
   page7 = loadImage("page7.png");
-  tut = new PImage[]{page1, page2, page3, page4, page5, page6, page7};
+  page8 = loadImage("page8.png");
+  page9 = loadImage("page9.png");
+  tut = new PImage[]{page1, page2, page3, page4, page5, page6, page7, page8, page9};
 }
 
 void newTwoPlayerGame() {
@@ -231,7 +233,21 @@ void mouseClicked() {
           }
         }
       }
-    } else if (TUTORIALPAGE ==7) {
+    } else if (TUTORIALPAGE == 7) {
+      if (mouseX > 700 && mouseX < 730 && mouseY > 648 && mouseY < 699) {
+        TUTORIALPAGE++;
+      }
+    } else if (TUTORIALPAGE == 8) {
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        TUTORIALPAGE++;
+      }
+    } else if (TUTORIALPAGE == 9) {
+      if (mouseX > 200 && mouseX < 550 && mouseY > 384 && mouseY < 479) {
+        TUTORIALPAGE = 1;
+      } else if (mouseX > 200 && mouseX < 550 && mouseY > 517 && mouseY < 612) {
+        TUTORIALPAGE = 1;
+        MODE = START;
+      }
     }
   } else if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
