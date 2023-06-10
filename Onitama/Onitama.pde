@@ -13,7 +13,8 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3, page4, page5, page6, page7, page8, page9;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu;
+PImage page1, page1a, page2, page2a, page2b, page3, page3a, page4, page5, page6, page7, page7a, page8, page8a, page9, page9a, page9b;
 PImage[] tut;
 boolean menu = false;
 
@@ -32,14 +33,22 @@ void setup() {
   redWinMenu = loadImage("redWinMenu.png");
   redWinRematch = loadImage("redWinRematch.png");
   page1 = loadImage("page1.png");
+  page1a = loadImage("page1a.png");
   page2 = loadImage("page2.png");
+  page2a = loadImage("page2a.png");
+  page2b = loadImage("page2b.png");
   page3 = loadImage("page3.png");
+  page3a = loadImage("page3a.png");
   page4 = loadImage("page4.png");
   page5 = loadImage("page5.png");
   page6 = loadImage("page6.png");
   page7 = loadImage("page7.png");
+  page7a = loadImage("page7a.png");
   page8 = loadImage("page8.png");
+  page8a = loadImage("page8a.png");
   page9 = loadImage("page9.png");
+  page9a = loadImage("page9a.png");
+  page9b = loadImage("page9b.png");
   tut = new PImage[]{page1, page2, page3, page4, page5, page6, page7, page8, page9};
 }
 
@@ -52,10 +61,40 @@ void newTwoPlayerGame() {
   winner = -1;
   menu = false;
 }
+
 void draw() {
   background(#121115);
   if (MODE == TUTORIAL) {
     image(tut[TUTORIALPAGE-1], 0, 0);
+    if (TUTORIALPAGE == 1){
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        image(page1a, 0, 0);
+      }
+    } else if (TUTORIALPAGE == 2){
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        image(page2b, 0, 0);
+      } else if (mouseX < 49 && mouseX > 10 && mouseY > 392 && mouseY < 458) {
+        image(page2a, 0, 0);
+      }
+    } else if (TUTORIALPAGE == 3){
+      if (mouseX > 200 && mouseX < 551 && mouseY > 424 && mouseY < 520) {
+        image(page3a, 0, 0);
+      }
+    } else if (TUTORIALPAGE == 7){
+      if (mouseX > 700 && mouseX < 730 && mouseY > 648 && mouseY < 699) {
+        image(page7a, 0, 0);
+      }
+    } else if (TUTORIALPAGE == 8){
+      if (mouseX < 740 && mouseX > 701 && mouseY > 392 && mouseY < 458) {
+        image(page8a, 0, 0);
+      }
+    } else if (TUTORIALPAGE == 9){
+      if (mouseX > 200 && mouseX < 550 && mouseY > 452 && mouseY < 548){
+        image(page9a, 0, 0);
+      } else if (mouseX > 200 && mouseX < 550 && mouseY > 585 && mouseY < 681){
+        image(page9b, 0, 0);
+      }
+    }
     if (TUTORIALPAGE == 4 || TUTORIALPAGE == 5 || TUTORIALPAGE == 6 || TUTORIALPAGE==7) {
       drawCards();
       game.display(100, 225);
