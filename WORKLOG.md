@@ -88,3 +88,7 @@ I fixed some bugs in class today. Mostly, with how the one player mode worked wi
 ### June 8
 
 I edited the capture cheat so that you can test out capturing a pawn as well. After that, I mostly worked on the tutorial. I designed the first six pages on Canvas and added them to the code. Currently the first three are complete and they just describe how to play. I have left right arrows that you can click to cycle through the pages. I'm still working on pages 4-6, which will be a limited version of our actual game. The actual game will be overlayed over the text, so we can have guided gameplay.
+
+### June 10
+
+I finished the tutorial page today. I added in the interactive elements that guides you through how to make a move. I also changed the colors from purple to blue and added in some indicators for where your mouse is. If you hover over a button or one of the arrows, it will change to purple. Finally, I added in a page on the win conditions.
