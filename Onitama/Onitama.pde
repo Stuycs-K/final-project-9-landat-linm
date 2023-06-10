@@ -13,7 +13,7 @@ ArrayList<int[]> highlights;
 boolean gameOver = false;
 int winner = -1;
 Game game;
-PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3, page4, page5, page6;
+PImage original, one, two, tutorial, blueWin, blueWinMenu, blueWinRematch, redWin, redWinMenu, redWinRematch, background, backgroundMenu, page1, page2, page3, page4, page5, page6, page7;
 PImage[] tut;
 boolean menu = false;
 
@@ -37,7 +37,8 @@ void setup() {
   page4 = loadImage("page4.png");
   page5 = loadImage("page5.png");
   page6 = loadImage("page6.png");
-  tut = new PImage[]{page1, page2, page3, page4, page5, page6};
+  page7 = loadImage("page6.png");
+  tut = new PImage[]{page1, page2, page3, page4, page5, page6, page7};
 }
 
 void newTwoPlayerGame() {
@@ -53,13 +54,19 @@ void draw() {
   background(#121115);
   if (MODE == TUTORIAL) {
     image(tut[TUTORIALPAGE-1], 0, 0);
-    if (TUTORIALPAGE == 4 || TUTORIALPAGE == 5 || TUTORIALPAGE == 6) {
+    if (TUTORIALPAGE == 4 || TUTORIALPAGE == 5 || TUTORIALPAGE == 6 || TUTORIALPAGE==7) {
       drawCards();
       game.display(100, 225);
       highlight();
-      fill(#f44336);
-      stroke(#f44336);
-      circle(50, 425, 30);
+      if (currentPlayer ==1) {
+        fill(#f44336);
+        stroke(#f44336);
+        circle(50, 425, 30);
+      } else if (currentPlayer ==2) {
+        fill(#2196f3);
+        stroke(#2196f3);
+        circle(50, 425, 30);
+      }
     }
   }
   if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
@@ -189,28 +196,39 @@ void mouseClicked() {
         newTwoPlayerGame();
         TUTORIALPAGE++;
       }
-    } else if (TUTORIALPAGE == 4) {
+    } else if (TUTORIALPAGE == 4 || TUTORIALPAGE == 5 || TUTORIALPAGE == 6) { // choose card, piece, move
       if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
         selectedCard = 0;
-        TUTORIALPAGE++;
-      }
-      if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
+      } else if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
         selectedCard = 1;
+      }
+      if (TUTORIALPAGE == 4) {
         TUTORIALPAGE++;
       }
-    } else if (TUTORIALPAGE == 5) {
-      if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
-        int row = game.whichTile(mouseX, mouseY)[0];
-        int col = game.whichTile(mouseX, mouseY)[1];
-        if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
-          currentPiece[0] = row;
-          currentPiece[1] = col;
+      if (TUTORIALPAGE == 5 || TUTORIALPAGE == 6) { // choose piece
+        if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
+          int row = game.whichTile(mouseX, mouseY)[0];
+          int col = game.whichTile(mouseX, mouseY)[1];
+          if (row == 4) {
+            currentPiece[0] = row;
+            currentPiece[1] = col;
+            if (TUTORIALPAGE == 5) {
+              TUTORIALPAGE++;
+            }
+          } else {
+            if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
+              game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
+              Cards used = game.deck[selectedCard];
+              game.deck[selectedCard] = game.deck[4];
+              game.deck[4] = used;
+              game.deck[4].flip();
+              currentPlayer++;
+              TUTORIALPAGE++;
+            }
+          }
         }
       }
-    } else if (TUTORIALPAGE == 6) {
-      // if a move is chosen
-    } else if (TUTORIALPAGE == 7) {
-      // if the next button is chosen
+    } else if (TUTORIALPAGE ==7) {
     }
   } else if (MODE == START) {
     if (mouseX < 550 && mouseX > 200 && mouseY > 340 && mouseY < 435) {
