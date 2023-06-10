@@ -201,12 +201,16 @@ void mouseClicked() {
     } else if (TUTORIALPAGE == 4 || TUTORIALPAGE == 5 || TUTORIALPAGE == 6) { // choose card, piece, move
       if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
         selectedCard = 0;
+        if (TUTORIALPAGE == 4) {
+          TUTORIALPAGE++;
+        }
       } else if (mouseX > 310 && mouseX < 500 && mouseY > 662 && mouseY < 812) {
         selectedCard = 1;
+        if (TUTORIALPAGE == 4) {
+          TUTORIALPAGE++;
+        }
       }
-      if (TUTORIALPAGE == 4) {
-        TUTORIALPAGE++;
-      }
+
       if (TUTORIALPAGE == 5 || TUTORIALPAGE == 6) { // choose piece
         if (mouseX > 100 && mouseX < 500 && mouseY > 225 && mouseY < 625) {
           int row = game.whichTile(mouseX, mouseY)[0];
