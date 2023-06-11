@@ -218,6 +218,30 @@ void drawCards() {
   game.deck[4].display(530, 350, 0); //3 should change to 4 at some point
 }
 
+void arrow(int startX, int startY, int endX, int endY){
+  stroke(255);
+  fill(255);
+  line(startX, startY, endX, endY);
+  float slope = (float)(endY-startY)/ (float) (endX-startX);
+  if(startX == endX && startY > endY){
+    triangle(endX, endY, endX + 3, endY + 15, endX - 3, endY + 15);
+  }
+  else if(startX == endX && startY < endY){
+    triangle(endX, endY, endX + 3, endY - 15, endX - 3, endY - 15);
+  }
+  else if(startY == endY && startX < endX){
+    triangle(endX, endY, endX - 15, endY - 3, endX - 15, endY + 3);
+  }
+  else if(startY == endY && startX > endX){
+    triangle(endX, endY, endX + 15, endY - 3, endX + 15, endY + 3);
+  }
+  else if(startX < endX){
+    triangle(endX, endY, endX - 15 + 3, endY -slope*15 - (1/slope)*3, endX - 15 - 3, endY -slope*15 + (1/slope)*3);
+  }
+  else if(startX > endX){
+    triangle(endX, endY, endX + 15 - 3, endY + slope*15 + (1/slope)*3, endX + 15 + 3, endY +slope*15 - (1/slope)*3);
+  }
+}
 void mouseClicked() {
   if (MODE == TUTORIAL) {
     // right arrow: 701 - 740, 392 - 458
