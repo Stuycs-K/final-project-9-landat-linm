@@ -46,6 +46,13 @@ Unfortunately past 7 AM, finished botmove() by finishing the capture conditions 
 
 Today I changed the highlight method in Onitama.pde to make the highlight more easily visible.
 
+### June 10
+
+Today I worked on fixing the card rotation in the single player mode. The botmove() method had a bug in it, which I fixed, and player 2 was selecting the wrong cards and wasn't flipping properly, so I fixed that as well. Then I found a bug in Onitama.pde.
+
+### June 11
+
+I fixed the bug. 
 
 ## Mikayla Lin
 
