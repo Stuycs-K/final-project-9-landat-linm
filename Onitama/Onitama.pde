@@ -55,6 +55,10 @@ void setup() {
 }
 
 void newTwoPlayerGame() {
+  selectedDestination[0] = -1;
+  selectedDestination[1] = -1;
+  selectedStart[0] = -1;
+  selectedStart[1] = -1;
   game = new Game();
   currentPlayer = 1;
   selectedCard = -1;
@@ -118,11 +122,11 @@ void draw() {
     } else {
       image(background, 0, 0);
     }
+    drawCards();
+    game.display(100, 225);
     if (selectedStart[0] != -1 && selectedStart[1] != -1 && selectedDestination[0] != -1 && selectedDestination[1] != -1){
       arrow(selectedStart[0], selectedStart[1], selectedDestination[0], selectedDestination[1]);
     }
-    drawCards();
-    game.display(100, 225);
     //debugStrings();
     highlight();
     if (currentPlayer ==1) {
