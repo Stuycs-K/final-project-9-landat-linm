@@ -118,6 +118,9 @@ void draw() {
     } else {
       image(background, 0, 0);
     }
+    if (selectedStart[0] != -1 && selectedStart[1] != -1 && selectedDestination[0] != -1 && selectedDestination[1] != -1){
+      arrow(selectedStart[0], selectedStart[1], selectedDestination[0], selectedDestination[1]);
+    }
     drawCards();
     game.display(100, 225);
     //debugStrings();
