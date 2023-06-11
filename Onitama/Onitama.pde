@@ -8,7 +8,8 @@ static int PASTMODE;
 static int TUTORIALPAGE = 1;
 int selectedCard = -1;
 int[] currentPiece = {-1, -1};
-int[] selectedPiece = {-1, -1};
+int[] selectedDestination = {-1, -1};
+int[] selectedStart = {-1, -1};
 int currentPlayer = -1;
 ArrayList<int[]> highlights;
 boolean gameOver = false;
@@ -374,9 +375,17 @@ void mouseClicked() {
       if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
         currentPiece[0] = row;
         currentPiece[1] = col;
+        selectedDestination[0] = -1;
+        selectedDestination[1] = -1;
+        selectedStart[0] = -1;
+        selectedStart[1] = -1;
       } else if (selectedCard != -1 && currentPiece[0] != -1) {
         if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
           Boolean won = game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
+          selectedDestination[0] = row;
+          selectedDestination[1] = col;
+          selectedStart[0] = currentPiece[0];
+          selectedStart[1] = currentPiece[1];
           Cards used = game.deck[selectedCard];
           game.deck[selectedCard] = game.deck[4];
           game.deck[4] = used;
@@ -440,9 +449,17 @@ void mouseClicked() {
         if (game.board[row][col] != null && game.board[row][col].getPlayer() == currentPlayer) {
           currentPiece[0] = row;
           currentPiece[1] = col;
+          selectedDestination[0] = -1;
+          selectedDestination[1] = -1;
+          selectedStart[0] = -1;
+          selectedStart[1] = -1;
         } else if (selectedCard != -1 && currentPiece[0] != -1) {
           if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
             Boolean won = game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
+            selectedDestination[0] = row;
+            selectedDestination[1] = col;
+            selectedStart[0] = currentPiece[0];
+            selectedStart[1] = currentPiece[1];
             Cards used = game.deck[selectedCard];
             game.deck[selectedCard] = game.deck[4];
             game.deck[4] = used;
@@ -478,6 +495,10 @@ void mouseClicked() {
               System.out.println(temp);
               if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))) {
                 game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+                selectedDestination[0] = possibleMoves.get(l)[0];
+                selectedDestination[1] = possibleMoves.get(l)[1];
+                selectedStart[0] = i;
+                selectedStart[1] = j;
                 gameOver = true;
                 winner = currentPlayer;
                 MODE = END;
@@ -497,6 +518,10 @@ void mouseClicked() {
               Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
               if (temp != null && temp.getPlayer() == 1) {
                 game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+                selectedDestination[0] = possibleMoves.get(l)[0];
+                selectedDestination[1] = possibleMoves.get(l)[1];
+                selectedStart[0] = i;
+                selectedStart[1] = j;
                 currentPiece[0] = -1;
                 currentPiece[1] = -1;
                 selectedCard = -1;
@@ -539,6 +564,10 @@ void mouseClicked() {
     }
     ArrayList<int[]> possibleMoves = game.highlight(startRow, startCol, 2, game.deck[whichCard]);
     game.move(startRow, startCol, possibleMoves.get(whichMove)[0], possibleMoves.get(whichMove)[1], 2);
+    selectedDestination[0] = possibleMoves.get(whichMove)[0];
+    selectedDestination[1] = possibleMoves.get(whichMove)[1];
+    selectedStart[0] = startRow;
+    selectedStart[1] = startCol;
     currentPiece[0] = -1;
     currentPiece[1] = -1;
     selectedCard = -1;
