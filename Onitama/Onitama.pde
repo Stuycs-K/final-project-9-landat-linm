@@ -124,7 +124,7 @@ void draw() {
     }
     drawCards();
     game.display(100, 225);
-    if (selectedStart[0] != -1 && selectedStart[1] != -1 && selectedDestination[0] != -1 && selectedDestination[1] != -1){
+    if (selectedStart[0] != -1 && selectedStart[1] != -1 && selectedDestination[0] != -1 && selectedDestination[1] != -1) {
       arrow(selectedStart[0], selectedStart[1], selectedDestination[0], selectedDestination[1]);
     }
     //debugStrings();
@@ -227,7 +227,7 @@ void drawCards() {
   game.deck[4].display(530, 350, 0); //3 should change to 4 at some point
 }
 
-void arrow(int startRow, int startCol, int endRow, int endCol){
+void arrow(int startRow, int startCol, int endRow, int endCol) {
   int startX = 100 + 80 * startCol + 40;
   int startY = 225 + 80 * startRow + 40;
   int endX = 100 + 80 * endCol + 40;
@@ -236,22 +236,17 @@ void arrow(int startRow, int startCol, int endRow, int endCol){
   fill(255);
   line(startX, startY, endX, endY);
   float slope = (float)(endY-startY)/ (float) (endX-startX);
-  if(startX == endX && startY > endY){
+  if (startX == endX && startY > endY) {
     triangle(endX, endY, endX + 3, endY + 15, endX - 3, endY + 15);
-  }
-  else if(startX == endX && startY < endY){
+  } else if (startX == endX && startY < endY) {
     triangle(endX, endY, endX + 3, endY - 15, endX - 3, endY - 15);
-  }
-  else if(startY == endY && startX < endX){
+  } else if (startY == endY && startX < endX) {
     triangle(endX, endY, endX - 15, endY - 3, endX - 15, endY + 3);
-  }
-  else if(startY == endY && startX > endX){
+  } else if (startY == endY && startX > endX) {
     triangle(endX, endY, endX + 15, endY - 3, endX + 15, endY + 3);
-  }
-  else if(startX < endX){
+  } else if (startX < endX) {
     triangle(endX, endY, endX - 15 + 3, endY -slope*15 - (1/slope)*3, endX - 15 - 3, endY -slope*15 + (1/slope)*3);
-  }
-  else if(startX > endX){
+  } else if (startX > endX) {
     triangle(endX, endY, endX + 15 - 3, endY + slope*15 + (1/slope)*3, endX + 15 + 3, endY +slope*15 - (1/slope)*3);
   }
 }
@@ -495,98 +490,95 @@ void mouseClicked() {
     }
   }
 }
-  boolean botmove() {
-    for (int i = 0; i < 5; i++) {
-      for (int j = 0; j < 5; j++) {
-        if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-          for (int k = 2; k < 4; k++) {
-            ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-            for (int l = 0; l < possibleMoves.size(); l++) {
-              Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
-              System.out.println(temp);
-              if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))) {
-                game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
-                selectedDestination[0] = possibleMoves.get(l)[0];
-                selectedDestination[1] = possibleMoves.get(l)[1];
-                selectedStart[0] = i;
-                selectedStart[1] = j;
-                gameOver = true;
-                winner = currentPlayer;
-                MODE = END;
-                return true;
-              }
+boolean botmove() {
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) { // chooses a piece
+        for (int k = 2; k < 4; k++) { // chooses a card
+          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]); // all possible moves
+          for (int l = 0; l < possibleMoves.size(); l++) { // iterate through all possible moves
+            Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
+            if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))) { // if its a win
+              game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2); // then do that move
+              selectedDestination[0] = possibleMoves.get(l)[0];
+              selectedDestination[1] = possibleMoves.get(l)[1];
+              selectedStart[0] = i;
+              selectedStart[1] = j;
+              gameOver = true;
+              winner = 2;
+              MODE = END;
+              return true;
             }
           }
         }
       }
     }
-    for (int i = 0; i < 5; i++) {
-      for (int j = 0; j < 5; j++) {
-        if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-          for (int k = 2; k < 4; k++) {
-            ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-            for (int l = 0; l < possibleMoves.size(); l++) {
-              Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
-              if (temp != null && temp.getPlayer() == 1) {
-                game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
-                selectedDestination[0] = possibleMoves.get(l)[0];
-                selectedDestination[1] = possibleMoves.get(l)[1];
-                selectedStart[0] = i;
-                selectedStart[1] = j;
-                currentPiece[0] = -1;
-                currentPiece[1] = -1;
-                selectedCard = -1;
-                currentPlayer--;
-                Cards used = game.deck[k];
-                game.deck[k] = game.deck[4];
-                game.deck[4] = used;
-                game.deck[k].flip();
-                game.deck[4].flip();
-                return true;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    int startRow = 0;
-    int startCol = 0;
-    int whichCard = 0;
-    int minRow = 4;
-    int whichMove = 0;
-    for (int i = 0; i < 5; i++) {
-      for (int j = 0; j < 5; j++) {
-        if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-          for (int k = 2; k < 4; k++) {
-            ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-            for (int l = 0; l < possibleMoves.size(); l++) {
-              if (possibleMoves.get(l)[0] < minRow) {
-                minRow = possibleMoves.get(l)[0];
-                whichMove = l;
-                startRow = i;
-                startCol = j;
-                whichCard = k;
-              }
-            }
-          }
-        }
-      }
-    }
-    ArrayList<int[]> possibleMoves = game.highlight(startRow, startCol, 2, game.deck[whichCard]);
-    game.move(startRow, startCol, possibleMoves.get(whichMove)[0], possibleMoves.get(whichMove)[1], 2);
-    selectedDestination[0] = possibleMoves.get(whichMove)[0];
-    selectedDestination[1] = possibleMoves.get(whichMove)[1];
-    selectedStart[0] = startRow;
-    selectedStart[1] = startCol;
-    currentPiece[0] = -1;
-    currentPiece[1] = -1;
-    selectedCard = -1;
-    currentPlayer--;
-    Cards used = game.deck[whichCard];
-    game.deck[whichCard] = game.deck[4];
-    game.deck[4] = used;
-    game.deck[whichCard].flip();
-    game.deck[4].flip();
-    return true;
   }
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) { //piece
+        for (int k = 2; k < 4; k++) { //movecard
+          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]); // all possible moves
+          for (int l = 0; l < possibleMoves.size(); l++) { // iterate through all moves
+            Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
+            if (temp != null && temp.getPlayer() == 1) { // if it captures a pawn
+              game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+              selectedDestination[0] = possibleMoves.get(l)[0];
+              selectedDestination[1] = possibleMoves.get(l)[1];
+              selectedStart[0] = i;
+              selectedStart[1] = j;
+              currentPiece[0] = -1;
+              currentPiece[1] = -1;
+              selectedCard = -1;
+              currentPlayer--;
+              Cards used = game.deck[k];
+              game.deck[k] = game.deck[4];
+              game.deck[4] = used;
+              game.deck[4].flip();
+              return true;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  int startRow = 0;
+  int startCol = 0;
+  int whichCard = 0;
+  int minRow = 4;
+  int whichMove = 0;
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
+        for (int k = 2; k < 4; k++) {
+          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
+          for (int l = 0; l < possibleMoves.size(); l++) {
+            if (possibleMoves.get(l)[0] < minRow) {
+              minRow = possibleMoves.get(l)[0];
+              whichMove = l;
+              startRow = i;
+              startCol = j;
+              whichCard = k;
+            }
+          }
+        }
+      }
+    }
+  }
+  ArrayList<int[]> possibleMoves = game.highlight(startRow, startCol, 2, game.deck[whichCard]);
+  game.move(startRow, startCol, possibleMoves.get(whichMove)[0], possibleMoves.get(whichMove)[1], 2);
+  selectedDestination[0] = possibleMoves.get(whichMove)[0];
+  selectedDestination[1] = possibleMoves.get(whichMove)[1];
+  selectedStart[0] = startRow;
+  selectedStart[1] = startCol;
+  currentPiece[0] = -1;
+  currentPiece[1] = -1;
+  selectedCard = -1;
+  currentPlayer--;
+  Cards used = game.deck[whichCard];
+  game.deck[whichCard] = game.deck[4];
+  game.deck[4] = used;
+  game.deck[4].flip();
+  return true;
+}
