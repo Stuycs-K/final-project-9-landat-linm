@@ -304,7 +304,7 @@ void mouseClicked() {
     } else if (mouseX < 550 && mouseX > 200 && mouseY > 604 && mouseY < 699) {
       MODE = TUTORIAL;
     }
-  } else if (MODE == TWOPLAYER || MODE == ONEPLAYER) {
+  } else if (MODE == TWOPLAYER) {
     if (mouseX > 717 && mouseX < 737 && mouseY > 11 && mouseY < 44) {
       menu = !menu;
     } else if (menu) {
@@ -380,6 +380,27 @@ void mouseClicked() {
       MODE = START;
     }
   } else if (MODE == ONEPLAYER) {
+    if (mouseX > 717 && mouseX < 737 && mouseY > 11 && mouseY < 44) {
+      menu = !menu;
+    } else if (menu) {
+      if (mouseX > 649 && mouseX < 734 && mouseY > 8 && mouseY < 39) {
+        MODE = START;
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 39 && mouseY < 70) {
+        newTwoPlayerGame();
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 70 && mouseY < 101) {
+        winner = 2;
+        MODE = END;
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 101 && mouseY < 132) {
+        winner = 1;
+        MODE = END;
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 132 && mouseY < 163) {
+        newTwoPlayerGame();
+        game = new Game("capture");
+      } else if (mouseX > 649 && mouseX < 734 && mouseY > 163 && mouseY < 194) {
+        newTwoPlayerGame();
+        game = new Game("temple");
+      }
+    }
     if (currentPlayer == 1) {
       if (mouseX > 100 && mouseX < 290 && mouseY > 662 && mouseY < 812) {
         selectedCard = 0;
@@ -395,19 +416,23 @@ void mouseClicked() {
           currentPiece[1] = col;
         } else if (selectedCard != -1 && currentPiece[0] != -1) {
           if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-            if (game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-              gameOver = true;
-              winner = currentPlayer;
-              MODE = END;
+          Boolean won = game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
+          Cards used = game.deck[selectedCard];
+          game.deck[selectedCard] = game.deck[4];
+          game.deck[4] = used;
+          game.deck[4].flip();
+          if (won) {
+            gameOver = true;
+            winner = currentPlayer;
+            MODE = END;
+          } else {
+            currentPiece[0] = -1;
+            currentPiece[1] = -1;
+            selectedCard = -1;
+            if (currentPlayer == 1) {
+              currentPlayer++;
             } else {
-              currentPiece[0] = -1;
-              currentPiece[1] = -1;
-              selectedCard = -1;
-              if (currentPlayer == 1) {
-                currentPlayer++;
-              } else {
-                currentPlayer--;
-              }
+              currentPlayer--;
             }
           }
         }
@@ -419,7 +444,7 @@ boolean botmove() {
   for (int i = 0; i < 5; i++) {
     for (int j = 0; j < 5; j++) {
       if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-        for (int k = 0; k < 2; k++) {
+        for (int k = 2; k < 4; k++) {
           ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
           for (int l = 0; l < possibleMoves.size(); l++) {
             Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
@@ -439,7 +464,7 @@ boolean botmove() {
   for (int i = 0; i < 5; i++) {
     for (int j = 0; j < 5; j++) {
       if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-        for (int k = 0; k < 2; k++) {
+        for (int k = 2; k < 4; k++) {
           ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
           for (int l = 0; l < possibleMoves.size(); l++) {
             Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
@@ -449,6 +474,11 @@ boolean botmove() {
               currentPiece[1] = -1;
               selectedCard = -1;
               currentPlayer--;
+              Cards used = game.deck[k];
+              game.deck[k] = game.deck[4];
+              game.deck[4] = used;
+              game.deck[k].flip();
+              game.deck[4].flip();
               return true;
             }
           }
@@ -456,6 +486,7 @@ boolean botmove() {
       }
     }
   }
+  
   int startRow = 0;
   int startCol = 0;
   int whichCard = 0;
@@ -464,7 +495,7 @@ boolean botmove() {
   for (int i = 0; i < 5; i++) {
     for (int j = 0; j < 5; j++) {
       if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-        for (int k = 0; k < 2; k++) {
+        for (int k = 2; k < 4; k++) {
           ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
           for (int l = 0; l < possibleMoves.size(); l++) {
             if (possibleMoves.get(l)[0] < minRow) {
@@ -485,5 +516,10 @@ boolean botmove() {
   currentPiece[1] = -1;
   selectedCard = -1;
   currentPlayer--;
+  Cards used = game.deck[whichCard];
+  game.deck[whichCard] = game.deck[4];
+  game.deck[4] = used;
+  game.deck[whichCard].flip();
+  game.deck[4].flip();
   return true;
 }

@@ -1,4 +1,4 @@
-public class Piece{
+class Piece{
   private int player;
   private String pieceType;
   

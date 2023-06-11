@@ -1,4 +1,4 @@
-public class Game {
+class Game {
   private Piece[][] board;
   private Cards[] deck;
   private String[] cardPool = {"DRAGON", "RABBIT", "GOOSE", "TIGER", "ELEPHANT", "CRAB", "MONKEY", "CRANE", "MANTIS", "BOAR", "FROG", "HORSE", "EEL", "ROOSTER", "OX", "COBRA"};
@@ -100,15 +100,6 @@ public class Game {
   public ArrayList<int[]> highlight(int pieceRow, int pieceCol, int currentPlayer, Cards card) {
     ArrayList<int[]> possibleMoves = new ArrayList<int[]>();
     int[][] vectors = card.getValidMoves();
-    /*
-    if (currentPlayer == 2){
-     for (int i = 0; i < vectors.length; i++){
-     for (int j = 0; j < 2; j++){
-     vectors[i][j] = -1 * vectors[i][j];
-     }
-     }
-     }
-     */
     for (int i = 0; i < vectors.length; i++) {
       int[] rowCol = new int[2];
       rowCol[0] = pieceRow - vectors[i][1];

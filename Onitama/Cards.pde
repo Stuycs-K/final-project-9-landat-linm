@@ -1,4 +1,4 @@
-public class Cards {
+class Cards {
   private int[][] validMoves;
   private String Grid;
   private final int[][] DRAGON = new int[][]{{-2, 1}, {2, 1}, {-1, -1}, {1, -1}};
