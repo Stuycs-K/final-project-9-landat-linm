@@ -220,7 +220,11 @@ void drawCards() {
   game.deck[4].display(530, 350, 0); //3 should change to 4 at some point
 }
 
-void arrow(int startX, int startY, int endX, int endY){
+void arrow(int startRow, int startCol, int endRow, int endCol){
+  int startX = 100 + 80 * startCol + 40;
+  int startY = 225 + 80 * startRow + 40;
+  int endX = 100 + 80 * endCol + 40;
+  int endY = 225 + 80 * endRow + 40;
   stroke(255);
   fill(255);
   line(startX, startY, endX, endY);
