@@ -416,110 +416,111 @@ void mouseClicked() {
           currentPiece[1] = col;
         } else if (selectedCard != -1 && currentPiece[0] != -1) {
           if (game.canMove(selectedCard, currentPiece[0], currentPiece[1], row, col, currentPlayer)) {
-          Boolean won = game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
-          Cards used = game.deck[selectedCard];
-          game.deck[selectedCard] = game.deck[4];
-          game.deck[4] = used;
-          game.deck[4].flip();
-          if (won) {
-            gameOver = true;
-            winner = currentPlayer;
-            MODE = END;
-          } else {
-            currentPiece[0] = -1;
-            currentPiece[1] = -1;
-            selectedCard = -1;
-            if (currentPlayer == 1) {
-              currentPlayer++;
-            } else {
-              currentPlayer--;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-boolean botmove() {
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 5; j++) {
-      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-        for (int k = 2; k < 4; k++) {
-          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-          for (int l = 0; l < possibleMoves.size(); l++) {
-            Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
-            System.out.println(temp);
-            if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))) {
-              game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+            Boolean won = game.move(currentPiece[0], currentPiece[1], row, col, currentPlayer);
+            Cards used = game.deck[selectedCard];
+            game.deck[selectedCard] = game.deck[4];
+            game.deck[4] = used;
+            game.deck[4].flip();
+            if (won) {
               gameOver = true;
               winner = currentPlayer;
               MODE = END;
-              return true;
-            }
-          }
-        }
-      }
-    }
-  }
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 5; j++) {
-      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-        for (int k = 2; k < 4; k++) {
-          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-          for (int l = 0; l < possibleMoves.size(); l++) {
-            Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
-            if (temp != null && temp.getPlayer() == 1) {
-              game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+            } else {
               currentPiece[0] = -1;
               currentPiece[1] = -1;
               selectedCard = -1;
-              currentPlayer--;
-              Cards used = game.deck[k];
-              game.deck[k] = game.deck[4];
-              game.deck[4] = used;
-              game.deck[k].flip();
-              game.deck[4].flip();
-              return true;
+              if (currentPlayer == 1) {
+                currentPlayer++;
+              } else {
+                currentPlayer--;
+              }
             }
           }
         }
       }
     }
   }
-  
-  int startRow = 0;
-  int startCol = 0;
-  int whichCard = 0;
-  int minRow = 4;
-  int whichMove = 0;
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 5; j++) {
-      if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
-        for (int k = 2; k < 4; k++) {
-          ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
-          for (int l = 0; l < possibleMoves.size(); l++) {
-            if (possibleMoves.get(l)[0] < minRow) {
-              minRow = possibleMoves.get(l)[0];
-              whichMove = l;
-              startRow = i;
-              startCol = j;
-              whichCard = k;
-            }
-          }
-        }
-      }
-    }
-  }
-  ArrayList<int[]> possibleMoves = game.highlight(startRow, startCol, 2, game.deck[whichCard]);
-  game.move(startRow, startCol, possibleMoves.get(whichMove)[0], possibleMoves.get(whichMove)[1], 2);
-  currentPiece[0] = -1;
-  currentPiece[1] = -1;
-  selectedCard = -1;
-  currentPlayer--;
-  Cards used = game.deck[whichCard];
-  game.deck[whichCard] = game.deck[4];
-  game.deck[4] = used;
-  game.deck[whichCard].flip();
-  game.deck[4].flip();
-  return true;
 }
+  boolean botmove() {
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 5; j++) {
+        if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
+          for (int k = 2; k < 4; k++) {
+            ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
+            for (int l = 0; l < possibleMoves.size(); l++) {
+              Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
+              System.out.println(temp);
+              if (possibleMoves.get(l) == new int[]{4, 2} || (temp != null && temp.getPieceType().equals("king"))) {
+                game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+                gameOver = true;
+                winner = currentPlayer;
+                MODE = END;
+                return true;
+              }
+            }
+          }
+        }
+      }
+    }
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 5; j++) {
+        if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
+          for (int k = 2; k < 4; k++) {
+            ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
+            for (int l = 0; l < possibleMoves.size(); l++) {
+              Piece temp = game.board[possibleMoves.get(l)[0]][possibleMoves.get(l)[1]];
+              if (temp != null && temp.getPlayer() == 1) {
+                game.move(i, j, possibleMoves.get(l)[0], possibleMoves.get(l)[1], 2);
+                currentPiece[0] = -1;
+                currentPiece[1] = -1;
+                selectedCard = -1;
+                currentPlayer--;
+                Cards used = game.deck[k];
+                game.deck[k] = game.deck[4];
+                game.deck[4] = used;
+                game.deck[k].flip();
+                game.deck[4].flip();
+                return true;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    int startRow = 0;
+    int startCol = 0;
+    int whichCard = 0;
+    int minRow = 4;
+    int whichMove = 0;
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 5; j++) {
+        if (game.board[i][j] != null && game.board[i][j].getPlayer() == 2) {
+          for (int k = 2; k < 4; k++) {
+            ArrayList<int[]> possibleMoves = game.highlight(i, j, 2, game.deck[k]);
+            for (int l = 0; l < possibleMoves.size(); l++) {
+              if (possibleMoves.get(l)[0] < minRow) {
+                minRow = possibleMoves.get(l)[0];
+                whichMove = l;
+                startRow = i;
+                startCol = j;
+                whichCard = k;
+              }
+            }
+          }
+        }
+      }
+    }
+    ArrayList<int[]> possibleMoves = game.highlight(startRow, startCol, 2, game.deck[whichCard]);
+    game.move(startRow, startCol, possibleMoves.get(whichMove)[0], possibleMoves.get(whichMove)[1], 2);
+    currentPiece[0] = -1;
+    currentPiece[1] = -1;
+    selectedCard = -1;
+    currentPlayer--;
+    Cards used = game.deck[whichCard];
+    game.deck[whichCard] = game.deck[4];
+    game.deck[4] = used;
+    game.deck[whichCard].flip();
+    game.deck[4].flip();
+    return true;
+  }
