@@ -8,6 +8,7 @@ static int PASTMODE;
 static int TUTORIALPAGE = 1;
 int selectedCard = -1;
 int[] currentPiece = {-1, -1};
+int[] selectedPiece = {-1, -1};
 int currentPlayer = -1;
 ArrayList<int[]> highlights;
 boolean gameOver = false;
@@ -242,6 +243,7 @@ void arrow(int startX, int startY, int endX, int endY){
     triangle(endX, endY, endX + 15 - 3, endY + slope*15 + (1/slope)*3, endX + 15 + 3, endY +slope*15 - (1/slope)*3);
   }
 }
+
 void mouseClicked() {
   if (MODE == TUTORIAL) {
     // right arrow: 701 - 740, 392 - 458
