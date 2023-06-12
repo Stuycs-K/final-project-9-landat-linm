@@ -99,3 +99,7 @@ I edited the capture cheat so that you can test out capturing a pawn as well. Af
 ### June 10
 
 I finished the tutorial page today. I added in the interactive elements that guides you through how to make a move. I also changed the colors from purple to blue and added in some indicators for where your mouse is. If you hover over a button or one of the arrows, it will change to purple. Finally, I added in a page on the win conditions.
+
+### June 11
+
+I just debugged the flipping of the single player mode. Before, it was flipping twice when it should only be flipping when switching with the spare.
