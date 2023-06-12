@@ -52,7 +52,7 @@ Today I worked on fixing the card rotation in the single player mode. The botmov
 
 ### June 11
 
-I fixed the bug. Then I wrote the arrows method, which takes an input of the row and column values in the board of the initial position and final position of a piece in the previous move, converts those values to x and y values in processing, and draws an arrow from the initial position to the final position. Then I edited the MouseClicked() and botmove() methods to include the selectedStart and selectedEnd array variables which I was using for arrow(), and called arrow() in the draw() method.
+I fixed the bug. Then I wrote the arrows method, which takes an input of the row and column values in the board of the initial position and final position of a piece in the previous move, converts those values to x and y values in processing, and draws an arrow from the initial position to the final position. Then I edited the MouseClicked() and botmove() methods to include the selectedStart and selectedEnd array variables which I was using for arrow(), and called arrow() in the draw() method. I also updated the description and the UML diagram for the prototype.
 
 ## Mikayla Lin
 
