@@ -2,6 +2,7 @@
 THIS DOCUMENT IS REQUIRED
 ## Group Info
 Team Name: The Java Beans
+
 Team Members: Theodore Landa, Mikayla Lin
 ## Overview
 This project is a digital version of the board game Onitama, a turn based strategy game similar to chess. Each player starts off with four pawns and a king, and there are 5 cards that rotate as the game continues. Our game includes a single player version (complete with a somewhat smart bot, by which I mean a not very smart bot), a two player version, and a tutorial. 
