@@ -103,3 +103,31 @@ I finished the tutorial page today. I added in the interactive elements that gui
 ### June 11
 
 I just debugged the flipping of the single player mode. Before, it was flipping twice when it should only be flipping when switching with the spare.
+
+# Dev Log
+
+## Working Features
+
+- A start screen with three buttons. One leads to a single player mode, one leads to the two player mode, and one leads to the tutorial. When you hover your mouse over a button, it changes color. 
+
+- A single player mode. We have a bot that moves for the blue side. The way the bot moves is it prioritizes any move that leads to a win, then moves leading to a capture, and after that it's random. 
+
+- A double player mode. Players can choose a valid card and one of their pieces. Valid moves will be highlighted in green. The card that is used will be swapped and with the spare card on the side and flipped so that both players get the same cards.
+
+- Arrows show the last made move.
+
+- A tutorial has all the information on how the game works. There is also an interactive walkthrough on how to make a move where the player gets a randomly generated new game, and is told step by step what to do. The buttons here also change color when the mouse hovers over it.
+
+- A menu that can be found by clicking the three dots on the top right (during a game). It includes: a button to return to the start screen (MENU), a button to restart the game (RESTART), a button to go to the blue win screen (BLUE WIN), a button to go to the red win screen (RED WIN), a button to test out capturing either a pawn or a king (CAPTURE), and a button to test out capturing a temple (TEMPLE). If you press on the three dots again, the menu closes. 
+
+## Broken Features
+
+N/A
+
+## Content resources
+
+- This online version of Onitama we based ours upon: https://onitama.app/#/
+
+- A list of all the valid cards: https://www.catholicmom.com/articles/2016/07/12/family-game-onitama
+
+- Processing Documentation
